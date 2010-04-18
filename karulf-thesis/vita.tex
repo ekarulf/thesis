@@ -1,0 +1,44 @@
+%
+%
+% Sample  Vita
+% This is done in a list environment.
+%
+% Personal heading
+\begin{center}
+{\large\thesisauthor}
+\end{center}
+%
+% Need to 'fold' long labels
+%
+\newcommand{\vitalabel}[1]%
+  {\raisebox{0pt}[1ex][0pt]
+    {\makebox[\labelwidth][l]%
+      {\parbox[t]{\labelwidth}{\hspace{0pt}\textbf{#1}}}}}
+%
+% Here's the list definition
+%
+\begin{list}
+  {}%                                        nodefault label
+  { \renewcommand{\makelabel}{\vitalabel}%   setting labels
+    \setlength{\labelwidth}{100pt}%          label width
+    \setlength{\leftmargin}{120pt}%
+    \setlength{\itemindent}{0pt}%            don't indent first line of items
+    \setlength{\parsep}{\baselineskip}%               space between paragraphs
+    \setlength{\itemsep}{5pt}%               additional space between items
+    }
+\item[Date of Birth] July 19, 1986
+\item[Place of Birth] Dayton, Ohio
+\item[Degrees] B.S.\ Computer Science, December 2009 \\
+	M.S.\ Computer Science, May 2010
+\item[Professional\linebreak Societies]
+  Association for Computing Machines
+% \item[Publications]
+%   Student, I.\ D.\ (2005).\ \LaTeX{} document class for Sever Institute,
+%   \textit{The \LaTeX{} J.} \textbf{10}(4):~323--336.
+%   
+%   Student, I.\ D.\ (2005).\ More \LaTeX{} wisdom, \textit{Another \LaTeX{} J}.
+%   \textbf{42}(7):~100--101.
+\end{list}
+\flushright
+\thesismonth\ \thesisyear
+

@@ -1,0 +1,67 @@
+\documentclass[mastersthesis,12pt]{wuthesis}     %% LaTeX2e document.
+% If you want to use other packages such as amstex, or epsfig
+% \usepackage them here.
+%
+% epsfig and ellipsis are 'packages' for LaTeX2e and
+% should be part of your distribution.  If not talk to your
+% sysadmin
+\usepackage{epsfig}
+\usepackage{ellipsis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% These commands customize the `wuthesis' package for me
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Enter your official name
+\renewcommand{\thesisauthor}{Erik Karulf}
+\renewcommand{\thesisauthorlastname}{Karulf}
+
+%% Enter department name
+\renewcommand{\thesisdepartment}{Department of Computer Science and Engineering}
+\renewcommand{\thesisfield}{Computer Science}
+
+%% Enter date of graduation
+\renewcommand{\thesismonth}{May}
+\renewcommand{\thesisyear}{2010}
+
+%% Enter title of thesis
+\renewcommand{\thesistitle}{Real-Time Interactive Control Interfaces for Multi-Robot Environments}
+\renewcommand{\thesisshorttitle}{Video Game Interfaces for Multi-Robot Environments}
+
+%% Enter supervisor name
+\renewcommand{\thesissupervisor}{Assistant Professor William Smart}
+\renewcommand{\thesiscommittee}{William Smart, Chair \\
+	Caitlin Kelleher \\
+	Christopher Gill
+	}
+
+%% Enter the dedication
+\renewcommand{\thesisdedication}{Dedicated to my parents, Richard and Deborah Karulf, for their love and support}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% This paper is construced from other files.  Each \include'd file
+%% begins a chapter.  This is done for easy developement and revision.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frontmatter
+\include{thesis-front}
+
+\mainmatter
+\include{thesis-background}
+\include{thesis-implementation}
+\include{thesis-results}
+
+\appendix                        % now we start appendicies
+% \include{thesis-appendixA}
+% \include{thesis-appendixB}
+% \include{thesis-appendixC}
+% \include{thesis-appendixD}
+
+\include{thesis-back}
+
+\end{document}
