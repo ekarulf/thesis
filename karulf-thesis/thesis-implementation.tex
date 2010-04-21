@@ -1,11 +1,69 @@
 \chapter{Robotic Middleware}
 
+In addition to computer science and engineering, the field of robotics is encompasses mechanical engineering, electrical engineering and systems engineering. Due to the complexity of robotic systems, software engineering best practices encourage us to develop abstraction layers. This allows us to re-use code and minimize the scope of each component that we develop. We will compare several robotic middleware solutions below.
+
+Among the popular robotic middleware technologies there are a few common traits: transportation encapsulation, stream processing, remote method invocation (RPC), and configuration management.
+
+% TODO: Section on Player / CMU IPC / ROS?
+
 \section{Robot Operating System}
+RIDE uses the Robot Operating System (ROS) developed by Stanford University and Willow Garage. This decision was based on ROS's modern distributed architecture, extensive development tools, and large community base.
 
-\section{Architecture}
+I will discuss the architecture of ROS in the next section.
 
-\subsection{Global Architecture}
+% TODO: Need more here
 
-\subsection{Robot Architecture}
+\subsection{Message Transportation}
+The ROS architecture can be thought of as a directed graph. Software components are called ``nodes'' and are run in separate processes. This allows each node to be written using the most appropriate language to the task. As an example, a performance sensitive node could be written in C while a less demanding node could be written in Python for improved readability. At the time of writing ROS supports C++, Python, Java and Lisp.
+
+ROS provides a framework for connecting nodes together. Nodes can be connected together through a ``topic'' or through a ``service''. A topic is a named stream that supports multiple readers and writers. Nodes that write to a topic are known as ``publishers''. A publisher announces that it is publishing to one or more topics to the ``roscore'' node. 
+
+The ``roscore'' node is a special node that is run when the ROS environment is initialized. It acts as a directory server maintaining a list of active nodes, topic, services, and configuration values.
+
+Nodes that wish to read from a topic are known as ``subscribers''. Similar to publishers, a subscriber will announce it is listening to one ore more topics to the roscore node.
+
+The roscore node continually informs subscribers of the location of publishers. This allows nodes to communicate directly without needing to contact the roscore node. Currently only TCP and UDP unicast sockets are supported, however future releases of ROS will include shared memory and multicast networking. A simple example of a ROS digraph can be seen in Figure X.X.
+% TODO: Insert rxgraph
+
+% TODO: correct acronym IDL
+ROS also defines a common message format for communicating. Messages are defined using a independent-domain language (IDL) which in turn auto-generate serialization and deserialization code for supported languages. An example message file can be seen in Figure X.X
+% TODO: Figure #
+
+\begin{figure}[ht]
+\makebox[\textwidth]{\hrulefill}
+\begin{verbatim}
+	# This contains the position of a point in free space
+	float64 x
+	float64 y
+	float64 z
+\end{verbatim}
+\makebox[\textwidth]{\hrulefill}
+\caption{Point.msg}
+\end{figure}
+
+\subsection{Kinematic Tree}
+A large part of the complexity of robotic systems is transforming coordinate frame in a timely manner. ROS offers a special topic located at \verb!tf! and provides a cross-language library, also called ``tf'', to ease coordinate transformation tasks.
+
+ROS builds a kinematic tree using data published to the \verb!tf! topic. Coordinate frames contain a timestamp, an object's name, the parent coordinate frame and the quaternion offset between the two. The tf package allows a developer to request a quaternion offset between two coordinate frames. 
+
+In order to maintain a correct representation, the library automatically discards stale coordinate frame data. This requires objects to publish their location at a specified frequency. 
+
+\section{RIDE Architecture}
+
+ROS was originally designed for a single robot system. A node may only be attached to a single ROS graph (or ``realm''). RIDE is designed to work with large numbers of robots. Early on in the development cycle, I decided to stick to the model that realms are local to a robot. This allows robots to operate independently of connectivity to eachother, and does not require any changes to existing single-robot code bases. This design conflict required the development of a new node library called ``rosmultimaster''.
+
+rosmultimaster allows a single node to connect to multiple realmss using the native ROS python (rospy) codebase. Implementation details for rosmultimaster can be found in Appendix X % TODO: Appendix number
+
+% TODO: Figure #
+Using the rosmultimaster code-base, we developed RIDE to connect to each robot on startup, as well as a single mapping realm. A high level overview can be found in Figure X.X. The map realm acts as a central location to for map retrieval / updating. In the future, if ROS were to support peer-to-peer networking, a map could be dynamically built by stitching together several independent maps. 
+
+Using the ``roslaunch'' utility, I was able to create a common set of launch parameters for each robot. I will discuss the robot architecture in Section X.X.X. % TODO: Section number
+
+I used a simulation environment, called ``rosstage'', to provide a consistent environment. The simulated system architecture is a superset of the regular RIDE architecture with the map realm acting as a full simulation realm and several additional topics being shared to the robot realms. An overview of the simulation architecture can be found in Figure X.X % TODO: Figure #
+
+\subsection{Robot Ecosystem}
+
+% TODO: Describe Figure
 
 \section{Panda3D Integration}
+
