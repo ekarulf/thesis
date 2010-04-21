@@ -54,7 +54,11 @@ ROS was originally designed for a single robot system. A node may only be attach
 
 rosmultimaster allows a single node to connect to multiple realmss using the native ROS python (rospy) codebase. Implementation details for rosmultimaster can be found in Appendix X % TODO: Appendix number
 
-% TODO: Figure #
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{images/ride-simulation-realm.png}
+\caption{Publish/Subscriber graph in RIDE Simulation Realm}
+\end{figure}
+
 Using the rosmultimaster code-base, we developed RIDE to connect to each robot on startup, as well as a single mapping realm. A high level overview can be found in Figure X.X. The map realm acts as a central location to for map retrieval / updating. In the future, if ROS were to support peer-to-peer networking, a map could be dynamically built by stitching together several independent maps. 
 
 Using the ``roslaunch'' utility, I was able to create a common set of launch parameters for each robot. I will discuss the robot architecture in Section X.X.X. % TODO: Section number
@@ -64,6 +68,18 @@ I used a simulation environment, called ``rosstage'', to provide a consistent en
 \subsection{Robot Ecosystem}
 
 % TODO: Describe Figure
+RIDE uses a modular structure for controlling robots. Due to the topic system in ROS, this functionality can be written to work regardless of if the robot is simulated or physical. Each robot must provide position data for basic RIDE functionality. Beyond position data, the user can choose what sensors, actuators, and ``actions'' to provide.
+
+
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{images/ride-robot-realm.png}
+\caption{Publish/Subscriber graph in RIDE Robot Realm}
+\end{figure}
+
+The position data requires the robot to return its
+
+The node that connects the robots to the simulation realm is called the simulator bridge
 
 \section{Panda3D Integration}
 
+RIDE uses the popular 3D rendering engine Panda3D to display the virtual environment to the user. Panda3D is implemented in C++ for performance reasons, and provides a Python interface that we used to
