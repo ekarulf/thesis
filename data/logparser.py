@@ -37,13 +37,15 @@ class Robot(object):
     def set_selected(self, selected, timestamp):
         if not self.selected == selected:
             self.selected = selected
+        if self.state == Robot.DIRECT and not selected:
+            self.set_state(Robot.IDLE, timestamp)
         self.update_neglected(timestamp)
     
-    def update_neglected(self, timestamp):
+    def update_neglected(self, timestamp, terminating=False):
         neglected = self.is_neglected()
         if neglected and self.neglect_begin is None:
             self.neglect_begin = timestamp
-        elif not neglected and self.neglect_begin is not None:
+        elif not neglected and not self.neglect_begin is None or terminating:
             self.neglect_time += timestamp - self.neglect_begin
             self.neglect_begin = None
         
@@ -158,6 +160,7 @@ def main(filename):
     for robot in robots.values():
         robot.set_selected(False, timestamp)
         robot.set_state(None, timestamp)
+        robot.update_neglected(timestamp, True)
     # Print Interesting Stats Here!
     print
     print "Total Time: %d" % (timestamp - epoch)
