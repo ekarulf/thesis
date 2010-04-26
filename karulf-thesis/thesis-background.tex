@@ -24,14 +24,14 @@ In order to defend this hypothesis, I will examine prior work in the field of ro
 \chapter{Exploration of User Interfaces}
 \label{chapter:ui}
 
-Human-Computer Interaction, HCI, is the study of how humans interface with technology. This includes traditional interfaces, like graphical user interfaces controlled with a mouse and keyboard, as well as alternative interfaces like the accelerometers in the Nintendo Wii(TM) controller.
+Human-Computer Interaction, HCI, is the study of how humans interface with technology. This includes traditional interfaces, like graphical user interfaces controlled with a mouse and keyboard, as well as alternative interfaces such as the accelerometers in the Nintendo Wii(TM) controller.
 
 Despite the advances in efficacy and popularity of non-traditional devices, the remainder of this paper will be limited to devices standard on most computer systems. In Section~\ref{section:futurework} I will briefly introduce where alternative interfaces would enhance the proposed interface.
 
 \section{Robotic User Interfaces}
 % From wds@
 
-Human-Robot Interaction is a subset of Human-Computer Interaction which focuses on how humans interface with robots. In his survey paper on HRI, Dr. Michael Goodrich introduces five attributes, showing in Figure~\ref{fig:five-attributes} that define the interactions between humans and robots (Goodrich 216-217).
+Human-Robot Interaction is a subset of Human-Computer Interaction which focuses on how humans interface with robots. In his survey paper on HRI, Dr. Michael Goodrich introduces five attributes, shown in Figure~\ref{fig:five-attributes} that define the interactions between humans and robots (Goodrich 216-217).
 
 \begin{figure}[ht]
 	\makebox[\textwidth]{\hrulefill}
@@ -49,7 +49,8 @@ Human-Robot Interaction is a subset of Human-Computer Interaction which focuses 
 
 \subsection{Autonomy}
 
-Autonomy, independent robot behavior, is an important factor in HRI design. The relationship between a robot and a human as provided through the interface can be thought of as a scale of autonomy. Teleoperation represents one end of the spectrum, where the robot exhibits no qualities of autonomous behavior. A fully autonomous robot that ignores human input represents the other extreme of autonomy. A simple scale of autonomy can be found in Figure~\ref{fig:autonomy}.
+Autonomy, independent robot behavior, is an important factor in HRI design. The relationship between a robot and a human, as provided through the interface, can be viewed or conceptualized along the lines of a continuum or a scale of autonomy. Teleoperation represents one end of the spectrum, where the robot exhibits no qualities of autonomous behavior. On the other hand, a fully autonomous robot, that ignores human input, represents the other extreme of autonomy. A simple scale of autonomy can be found in Figure~\ref{fig:autonomy}. [XX]
+
 
 \begin{figure}[ht]
 \begin{center}
@@ -58,15 +59,18 @@ Autonomy, independent robot behavior, is an important factor in HRI design. The 
 \end{center}
 \end{figure}
 
-Robots as they exist now have a fairly limited set of autonomous actions available. As a result, most interfaces now are artificially conservative in their autonomy due to limitations in artificial intelligence. As research into artificial intelligence and machine learning grows, a much more diverse set of autonomous behaviors will become available. It is important when developing robot interfaces to design with the future levels of autonomy in mind. 
+% Awk. -ek
+Robots, as they presently exist, have a fairly limited set of autonomous actions available. As a result, most interfaces, currently, are artificially conservative in their autonomy due to limitations in artificial intelligence. As research into artificial intelligence and machine learning grows, a much more diverse set of autonomous behaviors will inevitably become available. When developing robot interfaces, it is important to design them with the future levels of autonomy in mind. 
 
-RIDE employs a dynamic approach known as sliding autonomy. This allows the human and the robot to change the level of autonomy as needed. RIDE currently allows the human to increase or decrease the level of autonomy or a per robot basis, but the robots are only able to decrease the level of autonomy. As an example, consider a robot exploring a warehouse. If the robot planned a non-optimal navigation path, a user could manually specify the the waypoints. If the robot was unable to complete the specified path due to an obstruction in the path, it would be able to ask the user to directly teleoperate around the obstacle. Once free of the obstruction the user could input a new set of goal coordinates and allow the autonomous navigation system to resume control.
+The Robot Interactive Display Environment, also known as RIDE, employs a dynamic approach known as sliding autonomy. This allows the human and the robot to change the level of autonomy as needed. RIDE currently allows the human to increase or decrease the level of autonomy on a per robot basis. In contrast, the robots are capable of only decreasing the level of autonomy. For illustration purposes, consider a robot that explores a warehouse. If the robot planned a non-optimal navigation path, a user could manually specify the waypoints. If the robot is unable to complete the specified path due to an obstruction in the path, the robot could ask the user to directly teleoperate around the obstacle. Once free of the obstruction, the user could input a new set of goal coordinates and allow the autonomous navigation system to resume control.
 
-While the RIDE application does not specify any restrictions, I have restricted the scope of my thesis to allow for a more careful examination of environmental searching within the scope of supervised autonomy. In Section~\ref{section:futurework} I explain how these principles of RIDE could be adapted to support more autonomous behavior.
+
+% Needs tightening -ek
+While the RIDE application does not specify any restrictions, I have elected to restrict the scope of my thesis to allow for a more careful examination of environmental searching within the range of supervised autonomy. In Section~\ref{section:futurework} I explain how these principles of RIDE could be adapted to support more autonomous behavior.
 
 \subsection{Information Exchange}
 
-The nature of information exchange defines the flow of data between the human and the robot. What information is provided, how it is represented, and when is is communicated are all properties of the interface design. This encompasses low-level communication of navigation and sensor data as well as high-level commands sent from the human. 
+The nature of information exchange defines the flow of data between the human and the robot. What information is provided, how it is represented, and when it is communicated are all properties of the interface design. This encompasses low-level communication of navigation and sensor data as well as high-level commands sent from the human. 
 
 The purpose of visualization interfaces is to represent the one-way exchange of information from the robot to humans. This data typically includes location information, laser or sonar readings, battery readings, accelerometer readings, and map data. Original interfaces were written to be accessible programatically. These interfaces were slowly adapted to display sensor data graphically, but the resulting interfaces were disjoint and required operator training. Examples of these 2D user interfaces can be seen in Figure ??.
 
@@ -76,11 +80,11 @@ Nielsen attributes the success of the 3D interface to improved situational aware
 
 A limitation of Nielsen's interface is that it's focus on teleoperation leaves the robot without autonomy. While teleoperation may be optimal for single robot environments it does not allow for concurrent robot control. This limitation requires an human operator for every robot.
 
-We adapted several elements from the ecological user interface in our design of RIDE. We designed the user interface to display inside a single viewport to avoid splitting the user's attention. We also procedurally construct a 3D world using the map and sensor data. This rich user experience allows the user visually perceive the state of the world as the robot perceives it. Finally, we introduced several new concepts to improve upon the weaknesses of the existing interfaces. 
+We adapted several elements from the Nielsen's ecological user interface in our design of RIDE. We designed the user interface to display inside a single viewport to avoid splitting the user's attention. We also procedurally construct a 3D world using the map and sensor data. This rich user experience allows the user visually perceive the state of the world as the robot perceives it. Finally, we introduced several new concepts to improve upon the weaknesses of the existing interfaces. 
 
-We introduced an asynchronous task system to allow the human to give the robot tasks. A robot may only run a single task at a time, and receiving a new task will replace the previous task. The task system is written generically to allow each robot to provide actions appropriate to its hardware and software. Additional details on the implementation of the task system can be found in Section ??.
+We introduced an asynchronous task system to allow the human to give the robot tasks. A robot may run only one single task at a time, and receiving a new task will replace the previous task. The task system was written generically to allow each robot to provide actions appropriate to its hardware and software. Additional details on the implementation of the task system can be found in Section ??.
 
-To compliment the task system, a notification system was introduced which allows the robot to communicate to the human. The notification system is designed to allow the robot to select the importance of the message and the human to filter messages by importance. This allows the human operator the ability to ignore routine informational messages while still receiving urgent messages. An example notification can be seen in Figure ??, where the robot is self-reporting that it is unable to reach it's goal endpoint.
+To complement the task system, a notification system was also introduced. The notification system allows the robot to communicate to/with the human. The design of the notification system was engineered to enable the robot to select the importance of the message, and it permits the human to filter messages by importance. This gives the human operator the ability to ignore routine informational messages while still receiving urgent messages. An example notification is shown in Figure ??. The example shows the robot self-reporting that it is unable to reach it’s goal endpoint.
 
 \begin{figure}[ht]
 \begin{center}
