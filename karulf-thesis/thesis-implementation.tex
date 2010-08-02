@@ -2,19 +2,6 @@
 
 In addition to computer science and engineering, the field of robotics encompasses mechanical engineering, electrical engineering and systems engineering. Due to the complexity of robotic systems, software engineering's best practices encourages us to develop abstraction layers. Such abstraction allows the code to be re-used code and minimizes the scope of each component that we develop. As a result several robotic middleware are compared below.
 
-Among the popular robotic middleware technologies, there are a some traits: transportation encapsulation, stream processing, remote method invocation (RPC), and configuration management.
-
-% Do I need a section on Player?
-\section{Player Framework}
-An application using the Player framework is split into two parts: a client and a server. The client and server communicate over a TCP socket using the Player protocol. All communication between the client and server occurs using ``interfaces''. The client can connect to a Player server, request a list of exposed interfaces, and connect to instances of those interfaces. The player server runs in a single process and dynamically loads implementations of interfaces, known as drivers, on demand at runtime. A simple Player application can be seen in Figure~\ref{fig:middleware-player}. 
-
-\begin{figure}[ht]
-\includegraphics{images/middleware-player.pdf}
-\caption{Example Player application\label{fig:middleware-player}}
-\end{figure}
-
-The Player server and drivers are written in C; however, there are several language bindings for the clients, including C, C++ and Python. The Player server is configured at runtime using a configuration file which instructs the server which drivers to load with applicable configuration values.
-
 \section{Robot Operating System}
 The Robot Operating System (ROS) developed by Stanford University and Willow Garage can be thought of as a child of the Common Object Request Broker Architecture (CORBA) design pattern and the Player framework. This design decision gives ROS a modern distributed architecture that encourages small, reusable code. In addition, ROS has extensive development tools and an active community base.
 
