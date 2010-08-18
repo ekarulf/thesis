@@ -67,6 +67,7 @@ Using the rosmultimaster code-base, we developed RIDE to connect to each robot o
 % TODO: Generate high level figure
 
 \subsection{Simulation Realm}
+\label{sub:simulator}
 I used a simulation environment, called ``rosstage'', to provide a consistent environment. The simulated system architecture is a superset of the regular RIDE architecture with the map realm acting as a full simulation realm and several additional topics being shared to the robot realms. An overview of the simulation architecture can be found in Figure~\ref{fig:ride-simulation-realm}.
 
 \begin{sidewaysfigure}[ht]
@@ -96,7 +97,7 @@ RIDE uses the popular 3D rendering engine Panda3D to display the virtual environ
 
 Like most rendering engines, Panda3D relies on a scene graph for rendering objects onto the screen. We kept a one-to-one mapping of objects in ROS's kinematic tree to objects in Panda3D's scene graph. This natural mapping proved to be simple and effective.
 
-We developed a simple configuration file, using the YAML format, to let users configure which realms RIDE should connect to and what models to use when rendering objects from ROS's kinematic tree in the Panda3D scene graph. An example can be seen Figure X.X, where a single robot contains a laser range finder. Future work would remove the configuration file, moving the connection information into the user interface, and updating the RIDE protocol to provide dimensions and model information as needed.
+We developed a simple configuration file, using the YAML format, to let users configure which realms RIDE should connect to and what models to use when rendering objects from ROS's kinematic tree in the Panda3D scene graph. An example can be seen Figure~\ref{fig:tf-example}, where a single robot contains a laser range finder. Future work would remove the configuration file, moving the connection information into the user interface, and updating the RIDE protocol to provide dimensions and model information as needed.
 
 % TODO: Insert figure: RRS / scene graph
 

@@ -10,6 +10,15 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{rotating}
 \usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{verbatim} % TODO: Remove when done
+\newenvironment{TODO}
+  {\par\vskip\topsep%
+   \minipage{.9\linewidth}%
+   \verbatim}
+  {\endverbatim%
+   \endminipage\vskip\topsep}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -35,9 +44,9 @@
 
 %% Enter supervisor name
 \renewcommand{\thesissupervisor}{Assistant Professor William Smart}
-\renewcommand{\thesiscommittee}{William Smart, Chair \\
-	Caitlin Kelleher \\
-	Christopher Gill
+\renewcommand{\thesiscommittee}{Dr. William Smart, Chair \\
+	Dr. Caitlin Kelleher \\
+	Dr. Christopher Gill
 	}
 
 %% Enter the dedication
@@ -62,9 +71,10 @@
 \include{thesis-background}
 \include{thesis-implementation}
 \include{thesis-results}
+\include{thesis-conclusion}
 
 \appendix                        % now we start appendicies
-% \include{thesis-appendixA}
+\include{thesis-appendixA}
 % \include{thesis-appendixB}
 % \include{thesis-appendixC}
 % \include{thesis-appendixD}
