@@ -1,0 +1,19 @@
+Intro and motivation: 5 mins
+ * Use Cases and Personas
+   * Colby College
+   * Search and Rescue [NB: Doug Few]
+Prior work and context: 5 mins
+ * Video Games
+   * Sandbox Games
+   * RTS Games
+ * Robotics
+   * ROS
+- games, interfaces, ROS
+System overview: 15 mins
+- walk through interface, plumbing diagrams, problems encountered (and solved, like multimaster)
+Experimental setup: 5 minutes
+- hypotheses, etc
+Experimental results: 5 minutes
+- graphs/tables showing no real difference between the conditions
+Wrap-up: 5 minutes
+- what next, why we're still optimistic
