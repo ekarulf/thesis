@@ -50,7 +50,7 @@ The Robot Interactive Display Environment, also known as RIDE, employs a dynamic
 While the RIDE application does not specify any restrictions, I have elected to restrict the scope of my thesis to allow for a more careful examination of environmental searching within the range of supervised autonomy. In Section~\ref{section:futurework} I explain how these principles of RIDE could be adapted to support more autonomous behavior.
 
 \subsection{Information Exchange}
-
+\label{sub:info_exchange}
 The nature of information exchange defines the flow of data between the human and the robot. What information is provided, how it is represented, and when it is communicated are all properties of the interface design. This encompasses low-level communication of navigation and sensor data as well as high-level commands sent from the human. 
 
 The purpose of visualization interfaces is to represent the one-way exchange of information from the robot to humans. This data typically includes location information, laser or sonar readings, battery readings, accelerometer readings, and map data. Original interfaces were written to be accessible programatically. These interfaces were slowly adapted to display sensor data graphically, but the resulting interfaces were disjoint and required operator training. Examples of these 2D user interfaces can be seen in Figure~\ref{existing-robot-ui}.
@@ -65,7 +65,7 @@ We adapted several elements from the Nielsen's ecological user interface in our 
 
 We introduced an asynchronous task system allowing the human to directly command robots through a set of predetermined tasks. A robot may run only one single task at a time, and receiving a new task will replace the previous task. The task system was written generically to allow each robot to provide actions appropriate to its hardware and software. Additional details on the implementation of the task system can be found in Section~\ref{subs:ui-supervisor}.
 
-To complement the task system, a notification system was also introduced. The notification system allows the robot to communicate with the human. The design of the notification system was enables the robot to select the importance of the message, and it permits the human to filter messages by importance. This gives the human operator the ability to ignore routine informational messages while still receiving urgent messages. An example notification is shown in Figure~\ref{ride-notification}. The example shows the robot self-reporting that it has discovered a box, it's goal in this search and rescue scenario.
+To complement the task system, a notification system was also introduced. The notification system allows the robot to communicate with the human. The design of the notification system was enables the robot to select the importance of the message, and it permits the human to filter messages by importance. This gives the human operator the ability to ignore routine informational messages while still receiving urgent messages. An example notification is shown in Figure~\ref{fig:ride-notification}. The example shows the robot self-reporting that it has discovered a box, it's goal in this search and rescue scenario.
 
 \begin{figure}[ht]
 \begin{center}
@@ -113,7 +113,7 @@ The direct control mode sets up a high fidelity of information exchange between 
 
 While not a genre in its own right open environment, or sandbox, games define a style of gameplay. Instead of the story following a predetermined linear path, the player is instead able to explore a world with the story unfolding around them. This style of gameplay is harolded by some as the future of games. Putting aside the narrative aspect of open environment games, the design elements that they employ have direct applicability to robotic interfaces.
 
-The interfaces of open environment games are usually fairly minimal preferring leave most of the user interface available for camera display. The few user interface elements that do exist are typically semi-transparent to allow the user to see through UI components to the map. We applied this principal to all user interface components in RIDE by applying a small amount of alpha transparency. You can see an example of the transparency looking at the floor behind the user interface elements at the bottom of the screen in Figure ??. 
+The interfaces of open environment games are usually fairly minimal preferring leave most of the user interface available for camera display. The few user interface elements that do exist are typically semi-transparent to allow the user to see through UI components to the map. We applied this principal to all user interface components in RIDE by applying a small amount of alpha transparency. You can see an example of the transparency looking at the floor behind the user interface elements at the bottom of the screen in Figure~\ref{fig:ride-ui}.
 
 In most open environment games, a third person camera follows behind the player's avatar. While controls exist that allow the user to manually rotate the camera, most gameplay occurs with default camera positioning. This camera control style is the inspiration behind our third-person direct control mode. The user uses the arrow keys on the keyboard to move the robot in a given direction and uses the mouse to rotate the camera as needed.
 

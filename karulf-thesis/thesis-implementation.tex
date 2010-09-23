@@ -3,7 +3,7 @@
 In addition to computer science and engineering, the field of robotics encompasses mechanical engineering, electrical engineering and systems engineering. Due to the complexity of robotic systems, software engineering's best practices encourages us to develop abstraction layers. Such abstraction allows the code to be re-used code and minimizes the scope of each component that we develop. As a result several robotic middleware are compared below.
 
 \section{Robot Operating System}
-The Robot Operating System (ROS) developed by Stanford University and Willow Garage can be thought of as a child of the Common Object Request Broker Architecture (CORBA) design pattern and the Player framework. This design decision gives ROS a modern distributed architecture that encourages small, reusable code. In addition, ROS has extensive development tools and an active community base.
+The Robot Operating System (ROS), developed by Stanford University and Willow Garage, is a specialized adaptation of the Common Object Request Broker Architecture (CORBA) design pattern for robotics software. This design decision gives ROS a modern distributed architecture that encourages small, reusable code.
 
 The ROS architecture can be thought of as a directed graph. Software components are called ``nodes'' and are run in separate processes. This allows each node to be written using the most appropriate language to the task. As an example, a performance sensitive node could be written in C while a less demanding node could be written in Python for improved readability. At the time of writing ROS supports C++, Python, Java and Lisp.
 
@@ -25,7 +25,7 @@ The roscore node continually informs subscribers of the location of publishers. 
 \caption{Example ROS application\label{fig:middleware-ros}}
 \end{figure}
 
-The development of nodes can build on eachother. Low-level hardware interface nodes, akin to drivers in player, communicate raw sensor and actuator messages. Unlike Player's control code, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
+The development of nodes can build on eachother. Low-level hardware interface nodes communicate raw sensor and actuator messages. Unlike traditional robotic driver software, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
 
 % TODO: correct acronym IDL
 ROS also defines a common message format for communicating. Messages are defined using a independent-domain language (IDL) which in turn auto-generate serialization and deserialization code for supported languages. An example message file can be seen in Figure~\ref{fig:point}.
