@@ -1,5 +1,5 @@
-MAINFILE := thesis-main
-ZIPFILE := style-guide
+MAINFILE := karulf-thesis
+ZIPFILE := karulf-thesis
 
 all: pdf
 dvi: $(MAINFILE).dvi
@@ -18,7 +18,7 @@ $(MAINFILE).pdf: *.tex *.bib *.cls
 	bibtex $(MAINFILE)
 	pdflatex $(MAINFILE)
 	pdflatex $(MAINFILE)
-	
+
 $(MAINFILE).dvi: *.tex *.bib *.cls
 	latex $(MAINFILE)
 	bibtex $(MAINFILE)

@@ -1,3 +1,4 @@
+%!TEX root = karulf-thesis.tex
 \chapter{User Study}
 As mentioned in the introduction, the thesis of our research is applying video game principles to HRI interfaces will improve usability. For our preliminary user studies, we decided to examine the core elements of our RIDE interface. We used asynchronous notifications as an independent variable and measured a variety of metrics to determine effectiveness. We defined a successful interface as one that lowered task completion time and the number of times a user asked for help.
 
@@ -56,39 +57,6 @@ We also conducted a brief semi-structured interview after the post-experiment qu
 
 \section{Results}
 \label{sec:study-results}
-While the user study did not definitively support the hypothesis, we were able to find some promising results. Additionally, we identified several flaws with our user study design that we wish to address in future research. In Section~\ref{sec:future_study} we discuss our solutions to problems identified in this section.
+In this section, I will present the results of the user study. All times are presented in seconds. The subjective ratings in the pre-experiment and post-experiment questionnaires were measured using a 7-point Likert scale. The majority of our analysis was run results of running a
 
-In general total completion time did not significantly decrease between the control and the notification experiment. Table~\ref{tab:completion} lists the completion times for the control and notification experiments. A graph of this data can be found in Figure~\ref{fig:completion}.
-
-%TODO : Completion Table
-% \begin{figure}[ht]
-% \begin{center}
-% \includegraphics[width=5in]{images/results-completion.png}
-% \caption{Completion Time\label{tab:completion}}
-% \end{center}
-% \end{figure}
-
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=5in]{images/results-completion-graph.png}
-\caption{Completion Time\label{fig:completion}}
-\end{center}
-\end{figure}
-
-However among people who had no experience with controlling robots, those who had notifications completed the task faster ($\mu$=301.6, $\sigma$=149.6) than people who did not have notifications ($\mu$=547.5, $\sigma$=195.1). A graph of completion time for the subset of users without robotics experience can be seen below in Figure~\ref{fig:completion-noxp}.
-
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=5in]{images/results-completion-graph.png}
-\caption{Completion Time\label{fig:completion-noxp}}
-\end{center}
-\end{figure}
-
-We used calculated metric a metric called ``neglect time'' to represent time where a robot was idle. We defined a robot to be neglected if the robot was not executing a task or selected by the user. We found that neglect time to be strongly correlated with completion time. This linear relationship can be clearly seen in Figure~\ref{fig:neglect}.
-
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=5in]{images/results-neglect-graph.png}
-\caption{Neglect vs Completion Time\label{fig:neglect}}
-\end{center}
-\end{figure}
+between-participants analysis of variance (ANOVA) using completion time, total neglect time, or total idle time as dependent variables. Tabular res
