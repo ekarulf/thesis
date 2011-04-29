@@ -1,7 +1,111 @@
 %!TEX root = karulf-thesis.tex
-\chapter{Robotic Middleware}
+\chapter{Implementation}
 
-In addition to computer science and engineering, the field of robotics encompasses mechanical engineering, electrical engineering and systems engineering. Due to the complexity of robotic systems, software engineering's best practices encourages us to develop abstraction layers. Such abstraction allows the code to be re-used code and minimizes the scope of each component that we develop. As a result several robotic middleware are compared below.
+\section{User Interface}
+
+The core of the RIDE user interface is the concept of sliding autonomy. In order to accomplish effective sliding autonomy, RIDE takes several cues from the video game industry. In our design phase, we decided to separate the user interface into two segments, the supervisor mode and the direct mode. The ``supervisor mode'' relies on robot to perform actions autonomously and report the information back to the human as appropriate. The ``direct mode'' allows the user to directly teleoperate a robot. By including both control styles, the user is given flexibility to use the most appropriate control mode for a given situation.
+
+In addition to switching the control schemes between modes, we also change the fidelity of information exchanged. We found that providing streaming video for each robot was taxing not only on the network bandwidth but also on the human's perception. The movement from the video would draw the users eye to several places on the screen making effective management difficult. To combat this problem reduce the number of available sensors in the supervisor mode. When a user wishes to inspect a region with higher fidelity or the user wishes to teleoperate the robot, switching into the direct mode enables all sensors for the current robot. This design decision seemed to be fairly intuitive as will be explained in Section ??.
+
+The basic RIDE user interface can be seen in.
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=6.10in]{images/ride-ui.pdf}
+\caption{RIDE User Interface: Supervisory Mode\label{fig:ride-ui}}
+\end{center}
+\end{figure}
+% In the next two subsections, I will discuss the design decisions for each user interface mode and the video game genre that inspired the interface. \textbf{I DON'T KNOW WHAT ELSE TO WRITE HERE, POSSIBLY CUSTOMIZATION?}.
+% TODO: Introduce UI 
+
+
+\begin{table}[ht]
+\label{tab:ui-widgets}
+\begin{center}
+    \begin{tabular}{ | p{4cm} | l | l | l |}
+    \hline
+    \textbf{Mode} & \textbf{Left Widget} & \textbf{Center Widget} & \textbf{Right Widget} \\ \hline
+    Direct Control & Mini-map & Information Panel & Proximity Panel \\ \hline
+    Supervisory Control (Single Robot) & Mini-map & Status Panel & Action Panel \\ \hline
+    Supervisory Control (Multiple Robots) & Mini-map & Group Panel & Action Panel \\ \hline
+    \hline
+    \end{tabular}
+    \caption{RIDE User Interface Widgets}
+\end{center}
+\refstepcounter{table}
+\end{table}
+
+\subsection{Supervisory Control}
+\label{subs:ui-supervisor}
+
+The supervisory control interface is what set's RIDE apart from the interfaces described in the prior work. Unable to find any large scale control interfaces within the realm of robots, instead we looked at the video game industry for inspiration.
+
+Our search led us to the genre of Real-time strategy games (RTS). RTS games are full genre in the world of computer and video games. The goal of real-time strategy games is to effectively control your units to achieve a specified goal. Often these goals require the user to control units across a large  map. Real-time strategy games stress a users ability coordinate large numbers of units in a short amount of time. 
+
+RTS games use an isomorphic top-down view to display a large section of the environment at a time. The map can be navigated using either the keyboard or the mouse. Placing the moue pointer on the edge of the screen will translate the camera in the given direction. The keyboard can also be used directly manipulate the camera through both translation and rotation. An example user interface for a simple real time strategy can be seen in Figure ??. 
+
+The control scheme for RTS games is a ``point and click'' style. The player begins by selecting a unit by left clicking on a unit in the viewport. Internally the RTS game uses ray projection to determine which selectable object, if any, was selected. The user interface will update denote a selected unit by updating the on-screen user interface components and marking the unit in the viewport. If no unit could be found any currently selected objects will become deselected.
+
+We found that real time strategy games included their own task system similar to the task system described in Section ??. Furthermore, realtime strategy games support the control of heterogenous unit types. In the video games,  each unit type has separate abilities, strengths, and weaknesses. We wanted a way to visualize this information in the user interface without cluttering the main viewport during normal use. We developed two user interface widgets to represent the abilities, strengths, and weaknesses of each robot visually. 
+
+The first element known as the ``information panel'' can be seen in Figure ??. When a robot is selected, the information panel shows a listing of the robot's name, type, battery status, current task, and a list of sensors. A small 3D mockup of the front of the robot is also displayed to visually represent the make of the robot.
+
+The second panel developed for the supervisory mode was the ``action panel.'' The action panel displays a list of buttons representing available actions for the selected robot. This list of actions is populated from what the robot self-reports actions it can perform. The implementation details of how actions are auto-discovered is briefly covered in Section ??. Clicking on a button will prompt for any additional arguments, such as asking the user to click on a position, and then send the task instruction to the robot. In our development we found that visualizing a confirmation helped improve clarity of what instructions were given to the robot. As an example when the user instructs a robot to move to a specific destination, the user interface will blink the target icon twice on the destination.  
+
+In our study of RTS games, we found that players would organize units into heterogenous groups such that the individual units complimented each other's strengths and weaknesses. This required an interface that allows a user to select multiple robots at the same time and then command the group effectively.
+
+When a user wishes to select a group of robots, instead of a single left click the user may left click and drag a rectangle around the robots he or she wishes to select. Much like single unit selection a detailed information panel will display relevant data about the robot. However, instead of showing detailed information on a single robot, the the ``information panel'' will be updated to show basic information on group as a whole. The information panel displays a 3D mockup for each robot currently selected and the name of the robot. The user may move the mouses on top of the 3D mockup to obtain additional information about the robot.
+
+In addition to the information panel, the ``action panel'' also has a slight change in behavior. The action panel selects the union of set of actions available to each robot. RTS games provided a base set of actions that all controllable units must be able to perform, ``Stop'' and ``Move''. We require the same two actions to be available for all robots in RIDE. The advantage of requiring the move command for all robots is that we can use a shortcut found in most RTS games. When a robot is selected -- instead of click on the move button and then clicking on a destination, the user need only right click on the destination on the ground.
+
+% Need more
+
+% RTS view
+% Higher concurrency / lower fidelity
+% 
+% \begin{figure}[ht]
+% \begin{center}
+% \includegraphics[width=3.5in]{images/placeholder.png}
+% \caption{RIDE Supervisory Control\label{fig:ride-ui-super}}
+% \end{center}
+% \end{figure}
+% 
+% 
+% % FPS view
+% % Single concurrency / high fidelity
+% 
+% \begin{figure}[ht]
+% \begin{center}
+% \includegraphics[width=3.5in]{images/placeholder.png}
+% \caption{RIDE Direct Control\label{fig:ride-ui-direct}}
+% \end{center}
+% \end{figure}
+
+\subsection{Direct Control}
+
+The direct control mode sets up a high fidelity of information exchange between the human and the robot as the user teleoperates the robot. Due to the large amount of prior work in the field of interfaces for teleoperation. We searched for video game design elements that would compliment the existing interfaces. While there are several styles of video game that we could draw on for inspiration, we decided to base our direct control mode off of ``open environment games.''
+
+While not a genre in its own right open environment, or sandbox, games define a style of gameplay. Instead of the story following a predetermined linear path, the player is instead able to explore a world with the story unfolding around them. This style of gameplay is harolded by some as the future of games. Putting aside the narrative aspect of open environment games, the design elements that they employ have direct applicability to robotic interfaces.
+
+The interfaces of open environment games are usually fairly minimal preferring leave most of the user interface available for camera display. The few user interface elements that do exist are typically semi-transparent to allow the user to see through UI components to the map. We applied this principal to all user interface components in RIDE by applying a small amount of alpha transparency. You can see an example of the transparency looking at the floor behind the user interface elements at the bottom of the screen in Figure~\ref{fig:ride-ui}.
+
+In most open environment games, a third person camera follows behind the player's avatar. While controls exist that allow the user to manually rotate the camera, most gameplay occurs with default camera positioning. This camera control style is the inspiration behind our third-person direct control mode. The user uses the arrow keys on the keyboard to move the robot in a given direction and uses the mouse to rotate the camera as needed.
+
+A common component of most open environment games is a minimap which allows users to orient themselves with relation to the ``world''. In video games, important characters, landmarks, and other notable locations may be displayed in the minimap. We added a minimap to the lower right hand corner of the RIDE user interface. The minimap is a component common to both the direct and supervisory control interfaces and we feel strongly that the minimap's location on screen should remain in the same location for both modes.
+
+\subsection{Tasks and Notifications}
+We adapted several elements from the Nielsen's ecological user interface in our design of RIDE. We designed the user interface to display inside a single viewport to avoid splitting the user's attention. We also procedurally construct a 3D world using the map and sensor data. This rich user experience allows the user visually perceive the state of the world as the robot perceives it. Finally, we introduced several new concepts to improve upon the weaknesses of the existing interfaces; a task system and a notification system.
+
+We introduced an asynchronous task system allowing the human to directly command robots through a set of predetermined tasks. A robot may run only one single task at a time, and receiving a new task will replace the previous task. The task system was written generically to allow each robot to provide actions appropriate to its hardware and software. Additional details on the implementation of the task system can be found in Section~\ref{subs:ui-supervisor}.
+
+To complement the task system, a notification system was also introduced. The notification system allows the robot to communicate with the human. The design of the notification system was enables the robot to select the importance of the message, and it permits the human to filter messages by importance. This gives the human operator the ability to ignore routine informational messages while still receiving urgent messages. An example notification is shown in Figure~\ref{fig:ride-notification}. The example shows the robot self-reporting that it has discovered a box, it's goal in this search and rescue scenario.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=6.10in]{images/ride-notification.png}
+\caption{RIDE Notification Example\label{fig:ride-notification}}
+\end{center}
+\end{figure}
+
 
 \section{Robot Operating System}
 The Robot Operating System (ROS), developed by Stanford University and Willow Garage, is a specialized adaptation of the Common Object Request Broker Architecture (CORBA) design pattern for robotics software. This design decision gives ROS a modern distributed architecture that encourages small, reusable code.
@@ -26,7 +130,7 @@ The roscore node continually informs subscribers of the location of publishers. 
 \caption{Example ROS application\label{fig:middleware-ros}}
 \end{figure}
 
-The development of nodes can build on eachother. Low-level hardware interface nodes communicate raw sensor and actuator messages. Unlike traditional robotic driver software, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
+The development of nodes can build on each other. Low-level hardware interface nodes communicate raw sensor and actuator messages. Unlike traditional robotic driver software, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
 
 % TODO: correct acronym IDL
 ROS also defines a common message format for communicating. Messages are defined using a independent-domain language (IDL) which in turn auto-generate serialization and deserialization code for supported languages. An example message file can be seen in Figure~\ref{fig:point}.
@@ -92,7 +196,7 @@ In addition to providing position data, the robot must expose a path planning no
 % Discuss ride_agent
 % Discuss GoToNode
 
-\section{Panda3D Integration}
+\subsection{Panda3D Integration}
 
 RIDE uses the popular 3D rendering engine Panda3D to display the virtual environment to the user. Panda3D is implemented in C++ for performance reasons, and provides a Python interface that we used to integrate with ROS. 
 
