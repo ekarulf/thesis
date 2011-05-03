@@ -1,7 +1,117 @@
 %!TEX root = karulf-thesis.tex
 \section{Results}
 \label{sec:study-results}
-In this section, I will present the results of the user study. The subjective ratings in the pre-experiment and post-experiment questionnaires were measured using a 7-point Likert scale. The majority of our analysis was run results of running between-participants analysis of variance (ANOVA) using completion time, total neglect time, or total idle time as dependent variables. All times are presented in seconds.
+In this section, we will present the results of the user study. The subjective ratings in the pre-experiment and post-experiment questionnaires were measured using a 7-point Likert scale. The majority of our analysis was run results of running between-participants analysis of variance (ANOVA) using completion time, total neglect time, or total idle time as dependent variables. All times are presented in seconds. The total neglect time is the sum of the neglect times for each robot and, thus, can be greater than the completion time for the task. Similarly, the total idle time is the sum of idle times for the two robots. Tabular results report the mean with standard deviation of times, the F-statistic from the ANOVA (for $F(1, 20)$), and the significance level.
+
+\subsection{Effects of Prior Experience} % (fold)
+\label{sub:effects_of_prior_experience}
+In general, we found that prior experience with video games or with controlling a robot affected a subject’s performance on the search task.
+The single factor that showed the greatest influence on performance was video game use (Table~\ref{tab:prior-vg}). Subjects who did not regularly play video games took almost twice as long, on average, to complete the search task than subjects who did regularly play video games. An even more marked difference was seen in total neglect and idle times. Non-gamers had, on average, approximately three times longer neglect and idle times, compared to regular gamers.
 
 
-We define a successful interface as one that minimizes task completion time (TC), task idle time (IT), or neglect time e (NT). All times are given in seconds. 
+\begin{table}[ht]
+\label{tab:prior-vg}
+\begin{center}
+	\begin{tabular}{| l | l | l | l | l |}
+	\hline
+		& \textbf{VG} & \textbf{NVG} & \emph{F} & \emph{p}\\ \hline
+		Completion Time & 244.67 (142.57) & 550.43 (178.03) & 18.798 & < 0.001\\ \hline
+		Neglect Time & 181.27 (160.54) & 585.57 (218.85) & 24.073 & < 0.001\\ \hline
+		Idle Time & 238.13 (190.06) & 720.00 (319.07) & 19.850 & < 0.001\\ \hline
+	\hline
+	\end{tabular}
+	\caption{Effects of regular video game use (VG) vs. no regular video game use (NVG).}
+\end{center}
+\end{table}
+
+
+Surprisingly, experience playing RTS games did not have a significant effect on completion time, total neglect time, or total idle time. However, first-person game experience was mildly significant for completion time (see Table~\ref{tab:prior-fp}). Subjects who played first-person games completed the search task more quickly than those that did not play first-person games. Similar results, but with more significance, were seen for both total neglect time and total idle time.
+
+
+\begin{table}[ht]
+\label{tab:prior-fp}
+\begin{center}
+	\begin{tabular}{| l | l | l | l | l |}
+	\hline
+		& \textbf{FP} & \textbf{NFP} & \emph{F} & \emph{p}\\ \hline
+		Completion Time & 264.82 (150.42) & 419.09 (237.44) & 3.3138 & = 0.0837\\ \hline
+		Neglect Time & 195.45 (170.41) & 424.36 (291.50) & 5.0555 & < 0.05\\ \hline
+		Idle Time & 255.09 (202.24) & 527.81 (375.06) & 4.5062 & < 0.05\\ \hline
+	\hline
+	\end{tabular}
+	\caption{Effects of regular first-person video game play (FP) vs. no regular first-person video game play (NFP).}
+\end{center}
+\end{table}
+
+
+Prior experience controlling a robot was also significant. Subjects with previous experience controlling a robot had lower completion times than subjects with no prior experience (Table~\ref{tab:prior-robot}). Similarly total neglect time and total idle time were both significantly lower for subjects with previous experience controlling a robot than for those without.
+
+
+\begin{table}[ht]
+\label{tab:prior-robot}
+\begin{center}
+	\begin{tabular}{| l | l | l | l | l |}
+	\hline
+		& \textbf{RE} & \textbf{NE} & \emph{F} & \emph{p}\\ \hline
+		Completion Time & 236.33 (170.27) & 415.08 (207.99) & 4.5248 & < 0.05\\ \hline
+		Neglect Time & 163.33 (178.53) & 411.38 (265.54) & 5.9435 & < 0.05\\ \hline
+		Idle Time & 220.22 (222.86) & 510.00 (339.22) & 5.0228 & < 0.05\\ \hline
+	\hline
+	\end{tabular}
+	\caption{Effects of prior experience controlling a robot (RE) vs. no prior experience controlling a robot (NE).}
+\end{center}
+\end{table}
+
+
+Finally, the percentage of total time spend in supervisory mode was somewhat dependent on prior experience of first-person games. Subjects with prior experience of firstperson games spent more time in supervisory mode than the other two modes $(M~=89.86\%, SD~=15.20)$ than those subjects with no experience of first-person games $(M=72.60\%, SD=23.28), F(1,20)=4.2348, p=0.05287$.
+
+% subsection effects_of_prior_experience (end)
+
+\subsection{Use of Supervisory Mode} % (fold)
+\label{sub:use_of_supervisory_mode}
+
+Subjects spent, on average, more than 69\% of their time in supervisory mode $(t = 2.4944, p < 0.01)$, and less than 0.3\% of their time in first-person mode $(t = -2.747, p < 0.01)$.
+Completion time, total neglect time, and total idle time were significantly affected by the percentage of total time spend in supervisory mode. The median time percentage of time spent by subjects in supervisory was 94.19\%. Subjects that spend more than this median percentage of time in supervisory mode completed the search task, on average, twice as fast as subjects who spent less than median time in supervisory mode (Table~\ref{tab:supervisory}). The effects on total neglect time and total idle time were similar.
+
+
+\begin{table}[ht]
+\label{tab:supervisory}
+\begin{center}
+	\begin{tabular}{| l | l | l | l | l |}
+	\hline
+		& \textbf{GM} & \textbf{LM} & \emph{F} & \emph{p}\\ \hline
+		Completion Time & 197.17 (79.80) & 515.70 (181.79) & 30.119 & < 0.001\\ \hline
+		Neglect Time & 124.17 (89.09) & 532.80 (218.64) & 35.198 & < 0.001\\ \hline
+		Idle Time & 174.17 (111.90) & 652.20 (305.51) & 25.482 & < 0.001\\ \hline
+	\hline
+	\end{tabular}
+	\caption{Effects of spending greater than median time in supervisory mode (GM) vs. spending less than median time in supervisory mode (LM).}
+\end{center}
+\end{table}
+% subsection use_of_supervisory_mode (end)
+
+\subsection{Effects of Notifications} % (fold)
+\label{sub:effects_of_notifications}
+Subjects rated the task as easier to perform with notifications $(M=1.70, SD=0.94)$ than without notifications $(M=2.67, SD=0.98), F(1,20)=5.4319, p<0.05$. Subjects also rated themselves as needing less help with notifications enabled $(M=1.50, SD=0.71)$ than with notifications disabled $(M=2.50, SD=1.09), F(1,20)=6.2338, p<0.05$.
+
+Subjects’ ratings of how easy it was to control the robot were also mildly affected by the use of notifications. Subjects rated the robot as easier to control with notifications enabled $(M=1.80, SD=0.92)$ than with notifications disabled $(M=2.58, SD=0.90), F(1,20)=4.0528, p=0.05775$.
+
+Although notifications had no significant effect on completion time, total neglect time, or total idle time across all subjects, a significant effect was noticed for subjects without prior robot control experience. For subjects with no prior experience controlling robots, the time taken to complete the search task was significantly less with notifications enabled (Table~\ref{tab:notifications}). Total neglect time, and total idle time were similarly dramatically reduced in this group with notifications enabled.
+
+
+\begin{table}[ht]
+\label{tab:notifications}
+\begin{center}
+	\begin{tabular}{| l | l | l | l | l |}
+	\hline
+		& \textbf{NE} & \textbf{ND} & \emph{F} & \emph{p}\\ \hline
+		Completion Time & 301.57 (149.13) & 547.50 (195.07) & 6.6401 & < 0.05\\ \hline
+		Neglect Time & 269.21 (204.21) & 576.50 (241.72) & 6.1615 & < 0.05\\ \hline
+		Idle Time & 319.86 (205.03) & 731.83 (340.67) & 7.2453 & < 0.05\\ \hline
+	\hline
+	\end{tabular}
+	\caption{Effects of enabling notifications (NE) vs. disabling notifications (ND).}
+\end{center}
+\end{table}
+
+% subsection effects_of_notifications (end)
