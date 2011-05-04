@@ -112,6 +112,19 @@ To complement the task system, a notification system was also introduced. The no
 \end{center}
 \end{figure}
 
+\subsection{Prior Work} % (fold)
+\label{sub:hri_prior_work}
+A number of control interfaces either similar to, or draw direct inspiration from, RTS games [??, ??, ??, ??] or from first or third-person games [??, ??, ??]. However, we are not aware of any systems which provide as many RTS interface features as RIDE. We are also not aware of any existing interfaces that allow the user to move between task-level and direct control in the way that RIDE allows. We should also note that the work presented in this paper builds directly on a previous prototype version of RIDE [??].
+
+Jones and Snyder [??] describe a system that is very similar in spirit to ours, although it is designed for the control of a small number of free-flying space robots. This interface is most similar to the main display in RIDE, but it lacks other features, such as sensor visualization, the information panel, the minimap, and notifications.
+
+Parasuraman, Galster, and Miller describe a task-level control interface called Playbook [??], and evaluate it’s effectiveness on a task where subjects controlled six simulated unmanned vehicle under a range of conditions. Their interface had a 2d representation of the world, and limited sensor visualizations.
+
+Nielsen and Goodrich [??] compared a control interface that is very similar to the main display of RIDE to one that presented a direct video feed from the robot alongside a 2d map. They concluded that the third-person display, with the video displayed as if on a projection screen in front of the robot, allowed for easier control of the robot. Our use of this technique for video display in third-person mode is motivated by the results of this work.
+
+Richter and Drury [??] surveyed a number of video game interfaces, and characterized the various recurring elements within them. They proposed a Video-Game Based Framework (VGBF) for characterizing HRI interfaces by the input and output devices and methods, and by their input classifications.
+
+% subsection prior_work (end)
 
 \section{Robot Operating System}
 The Robot Operating System (ROS), developed by Stanford University and Willow Garage, is a specialized adaptation of the Common Object Request Broker Architecture (CORBA) design pattern for robotics software. This design decision gives ROS a modern distributed architecture that encourages small, reusable code.
