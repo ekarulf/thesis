@@ -51,7 +51,7 @@ Real-time strategy (RTS) games focus on resource management and combat between a
 
 Players give orders to their units at the task level, instructing them to, for example, engage in combat, harvest some natural resource, or move to a particular location. Units then carry out these orders autonomously, reporting back when they are done or when some unforeseen circumstances are encountered. Orders are typically given using a graphical interface, where displayed units can be selected and then assigned a task.
 
-Figure~\ref{fig:aoe3} shows the user interface from Microsofts's Age of Empires III [9] RTS, a representative and extremely popular example of the genre. The interface is dominated by the main display, which shows an iconic, isometric view of the world. The viewpoint of the display can be moved to show different parts of the game world. The display shows two types of units (cannons, calvary, and infantry), terrain (water, trees, and plains), buildings (gates, farms, and roads), and game information (selected units, waypoints). The player can select units, individually or in groups, with mouse and keyboard commands. Once selected, these units can be assigned a specific task from the task list.
+Figure~\ref{fig:aoe3} shows the user interface from Microsofts's Age of Empires III [9] RTS, a representative and extremely popular example of the genre. The interface is dominated by the main display, which shows an iconic, isometric view of the world. The viewpoint of the display can be moved to show different parts of the game world. The display shows two types of units (cannons, cavalry, and infantry), terrain (water, trees, and plains), buildings (gates, farms, and roads), and game information (selected units, waypoints). The player can select units, individually or in groups, with mouse and keyboard commands. Once selected, these units can be assigned a specific task from the task list.
 
 \begin{figure}[ht]
 \begin{center}
@@ -61,7 +61,7 @@ Figure~\ref{fig:aoe3} shows the user interface from Microsofts's Age of Empires 
 \end{figure}
 
 
-The task list appears in the bottom right of the interface, and displays icons for all available tasks, based on the currently-selected units. Some tasks, such as movement, re-quire more information, which is provided by clicking on the main display with the mouse.
+The task list appears in the bottom right of the interface, and displays icons for all available tasks, based on the currently-selected units. Some tasks, such as movement, require more information, which is provided by clicking on the main display with the mouse.
 
 Information about the currently-selected units is displayed to the left of the task list. In the figure, a single heavy cannon unit has been selected, and information on its allegiance, player name, health, weaponry, and armor is shown.
 
@@ -69,7 +69,7 @@ A map of the entire game world, called the minimap, is displayed in the bottom l
 
 Clicking anywhere on the displayed part of the minimap moves the viewpoint in the main display to look at that point. This gives a quick way of moving the main display viewpoint around the (potentially large) world. The minimap also displays primitive notifications; when a unit needs attention, the colored dot that represents it flashes. A button to the side of the minimap moves the viewpoint of the main display to center on a unit currently without an assigned task, if one exists.
 
-The interfaces in Figure~\ref{fig:aoe3} notifications in two locations. Large notifications in the center of the screen provides urgent information to the user about the current objective. This large notification is displayed on the screen for a short time before automatically hidden. Smaller notifications on the left side of the screen provide less urgent, actionable information to the user. These smaller notifications persist until dismissed by the user. When clicked these smaller notifications focus the camera on location, in this case a new piece of artillery.
+The interfaces in Figure~\ref{fig:aoe3} shows notifications in two locations. Large notifications in the center of the screen provide urgent information to the user about the current objective. This large notification is displayed on the screen for a short time before it is automatically hidden. Smaller notifications on the left side of the screen provide less urgent, actionable information to the user. These smaller notifications persist until dismissed by the user. When clicked these smaller notifications focus the camera on a location, in this case a new piece of artillery.
 
 Finally, a menu bar stretches across the top of the display. This displays current status in the top right (current quantities of resources), and gives access to less-frequently-used functions, such as help screens and configuration dialogs.
 
@@ -78,7 +78,7 @@ Finally, a menu bar stretches across the top of the display. This displays curre
 
 
 \section{Human-Robot Interaction}
-Human-Robot Interaction is a subset of Human-Computer Interaction which focuses on how humans interface with robots. In his survey paper on HRI, Goodrich introduces five attributes, shown in Figure~\ref{fig:five-attributes} that define the interactions between humans and robots \cite{Goodrich_Survey}.
+Human-Robot Interaction is a subset of Human-Computer Interaction which focuses on how humans interface with robots. In their survey paper on HRI, Goodrich and Schultz introduce five attributes, shown in Figure~\ref{fig:five-attributes} that define the interactions between humans and robots \cite{Goodrich_Survey}.
 
 \begin{figure}[ht]
 	\makebox[\textwidth]{\hrulefill}
@@ -110,7 +110,7 @@ The relationship between a robot and a human, as provided through the interface,
 % Awk. -ek
 Robots, as they presently exist, have a fairly limited set of autonomous actions available. As a result, most interfaces, currently, are artificially conservative in their autonomy due to limitations in artificial intelligence. As research into artificial intelligence and machine learning grows, a much more diverse set of autonomous behaviors will inevitably become available. As user interface designers, we are tasked to create extensible interfaces to support future behaviors.
 
-The idea of sliding autonomy allows the human and a robot to change the level of autonomy as needed. For illustration purposes, consider a robot that explores a warehouse. If the robot planned a poor navigation path, a user could manually specify the waypoints of an optimal path. If the robot is unable to complete the specified path due to an obstruction in the path, the robot could ask the user to directly teleoperate around the obstacle. Once free of the obstruction, the user would input a new set of goal coordinates and allow the autonomous navigation system to resume control. When combined with machine learning, sliding autonomy provides the robot a fantastic platform for interactive learning from demonstration. The idea of interactive learning from demonstration is already well established \cite{GWAP} \cite{Grollman}.
+The idea of sliding autonomy allows the human and a robot to change the level of autonomy as needed. For illustration purposes, consider a robot that explores a warehouse. If the robot planned a poor navigation path, a user could manually specify the waypoints of an optimal path. If the robot is unable to complete the specified path due to an obstruction in the path, the robot could ask the user to directly teleoperate around the obstacle. Once free of the obstruction, the user would input a new set of goal coordinates and allow the autonomous navigation system to resume control. When combined with machine learning, sliding autonomy provides the robot an excellent platform for interactive learning from demonstration. The idea of interactive learning from demonstration is already well established \cite{GWAP} \cite{Grollman}.
 
 \subsection{Information Exchange}
 \label{sub:info_exchange}
