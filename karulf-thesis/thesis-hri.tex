@@ -1,23 +1,21 @@
 %!TEX root = karulf-thesis.tex
 \chapter{Human-Computer Interaction} % (fold)
 \label{chapter:hci}
-Human-Computer Interaction, HCI, is the study of how humans interface with technology. This includes traditional interfaces, such as graphical user interfaces controlled with a mouse and keyboard, as well as alternative interfaces such as the accelerometers in the Nintendo Wii™ controller or the motion tracking system in the Microsoft Kinect™.
+Human-Computer Interaction (HCI) is the study of how humans interface with technology. This includes traditional interfaces, such as graphical user interfaces controlled with a mouse and keyboard, as well as alternative interfaces such as the accelerometers in the Nintendo Wii™ controller or the motion tracking system in the Microsoft Kinect™.
 
 Despite the advances in efficacy and popularity of non-traditional, devices the remainder of this paper will be limited to devices standard on most computer systems, e.g., a monitor, mouse, and keyboard. In Section~\ref{section:futurework} we will briefly highlight how alternative interfaces would enhance our proposed interface.
 
 \section{Video Game Interfaces} % (fold)
 \label{sec:video_game_interfaces}
-Originally created as an application of computer graphics for use in the entertainment industry, video game development has matured into an independent industry in its own right. The popularity of video games has grown significantly throughout the past decade. The Entertainment Software Association estimates 68\% of American households now play computer or video games. \cite{ESA} This large demographic represents a pool of users already versed in exploring 3D virtual worlds interactively. In these interactions, users are not only perceiving the virtual world through simulated senses, but users are also performing actions and controlling their presence in this world through input devices, eg., a mouse and keyboard.
+Originally created as an application of computer graphics for use in the entertainment industry, video game development has matured into an independent industry in its own right. The popularity of video games has grown significantly throughout the past decade. The Entertainment Software Association estimates 68\% of American households now play computer or video games \cite{ESA}. This large demographic represents a pool of users already versed in exploring 3D virtual worlds interactively. In these interactions, users are not only perceiving the virtual world through simulated senses, but users are also performing actions and controlling their presence in this world through input devices, eg., a mouse and keyboard.
 
 \subsection{Video Games in Research} % (fold)
 \label{sub:video_games_in_research}
 Due to their common ancestry with human-computer interaction, many of the principles of video game design can be applied to the field of human-robot interaction (HRI), which will be discussed further in Section~\ref{sec:hri}. There are several published applications of video games to the fields of artificial intelligence and machine learning. We will explore two applications that leverage human resources to complement artificial intelligence.
 
-In his research, Dr. Luis Von Ahn, Assistant Professor at Carnegie Mellon, concluded that video games can be an effective tool for generating training data sets for machine learning. \cite{GWAP} Dr. Von Ahn developed special video games he labeled ``games with a purpose,'' (GWAP).  Such games provide a means to solve problems often considered trivial for humans, yet simultaneously considered quite challenging for computers. In these games, the interaction of the human and the computer has changed to include the human in the computation of data. This is an interesting inversion of traditional autonomy, where the human is given tasks by the computer's artificial intelligence.
+Von Ahn concluded that video games can be an effective tool for generating training data sets for machine learning \cite{GWAP}. He developed special video games he labeled ``games with a purpose.''  Such games provide a means to solve problems often considered trivial for humans, yet simultaneously considered quite challenging for computers. The \emph{ESP Game}, Von Ahn's first game, uses human computation to classify images that computer algorithms are unable to recognize. In these games, the interaction of the human and the computer has changed to include the human in the computation of data. This is an interesting inversion of traditional autonomy, where the human is given tasks by the computer's artificial intelligence \cite{GWAP}.
 
-% Does GWAP need a "for example" like ESP Game
-
-Dr. Daniel Grollman, in his dissertation work, applied a video game interface with HRI principles to capture training data for robotic user interfaces. \cite{Grollman} Grollman's application, RGame, recorded user’s actions as they controlled a robotic dog and taught it to play soccer. Dr. Grollman created an AI model for shooting and defending tasks, which utilized the aggregate of data collected from RGame. Similar to Dr. Von Ahn's research, the RGame interface allowed the computer request information from the user to help it solve a problem.
+Grollman, in his dissertation work, applied a video game interface with HRI principles to capture training data for robotic user interfaces \cite{Grollman}. His application, RGame, recorded user’s actions as they controlled a robotic dog and taught it to play soccer. Grollman created an AI model for shooting and defending tasks, which utilized the aggregate of data collected from RGame. Similar to Von Ahn's research, the RGame interface allowed the computer request information from the user to help it solve a problem.
 % subsection video_games_in_research (end)
 
 \subsection{First-Person \& Third-Person Games} % (fold)
@@ -53,7 +51,7 @@ Real-time strategy (RTS) games focus on resource management and combat between a
 
 Players give orders to their units at the task level, instructing them to, for example, engage in combat, harvest some natural resource, or move to a particular location. Units then carry out these orders autonomously, reporting back when they are done or when some unforeseen circumstances are encountered. Orders are typically given using a graphical interface, where displayed units can be selected and then assigned a task.
 
-Figure~\ref{fig:aoe3} shows the user interface from Microsofts's \emph{Age of Empires III} [9] RTS, a representative and extremely popular example of the genre. The interface is dominated by the main display, which shows an iconic, isometric view of the world. The viewpoint of the display can be moved to show different parts of the game world. The display shows three types of units (cannons, calvary, and infantry), terrain (water, trees, and plains), buildings (gates, farms, and roads), and game information (selected units, waypoints). The player selects units, individually or in groups, with mouse and keyboard commands. Once selected, these units can be assigned a specific task from the task list.
+Figure~\ref{fig:aoe3} shows the user interface from Microsofts's \emph{Age of Empires III} [9] RTS, a representative and extremely popular example of the genre. The interface is dominated by the main display, which shows an iconic, isometric view of the world. The viewpoint of the display can be moved to show different parts of the game world. The display shows three types of units (cannons, cavalry, and infantry), terrain (water, trees, and plains), buildings (gates, farms, and roads), and game information (selected units, waypoints). The player selects units, individually or in groups, with mouse and keyboard commands. Once selected, these units can be assigned a specific task from the task list.
 
 \begin{figure}[ht]
 \begin{center}
@@ -71,7 +69,7 @@ A map of the entire game world, called the mini-map, is displayed in the bottom 
 
 Clicking anywhere, on the displayed part of the mini-map, moves the viewpoint in the main display to focus at that point. This option provides a quick way of moving the main display viewpoint around the (potentially large) world. The mini-map also displays primitive notifications; when a unit needs attention, the colored dot that represents it flashes. A button to the side of the mini-map moves the viewpoint of the main display to center on a unit currently without an assigned task, if one exists.
 
-The interface in Figure~\ref{fig:aoe3} highlights notifications in two locations. Large notifications in, the center of the screen, provide urgent information to the user about the current objective. The larger notification is displayed on the screen for a short time before automatically hidden. Smaller notifications on the left side of the screen provide less urgent, actionable information to the user. The smaller notifications persist until dismissed by the user. When clicked, the smaller notifications focus the camera on location, in this case a new piece of artillery.
+The interface in Figure~\ref{fig:aoe3} highlights notifications in two locations. Large notifications in, the center of the screen, provide urgent information to the user about the current objective. The larger notification is displayed on the screen for a short time before it is automatically hidden. Smaller notifications on the left side of the screen provide less urgent, actionable information to the user. The smaller notifications persist until dismissed by the user. When clicked, the smaller notifications focus the camera on location, in this case a new piece of artillery.
 
 Finally, a menu bar stretches across the top of the display. This displays current status in the top right (current quantities of resources), and gives access to less-frequently-used functions, such as help screens and configuration dialogs.
 
@@ -81,7 +79,7 @@ Finally, a menu bar stretches across the top of the display. This displays curre
 
 \section{Human-Robot Interaction}
 \label{sec:hri}
-Human-Robot Interaction (HRI) is a subset of Human-Computer Interaction which focuses on how humans interface with robots. In his survey paper on HRI, Dr. Michael Goodrich introduces five attributes, shown in Figure~\ref{fig:five-attributes} that define the interactions between humans and robots. \cite{Goodrich_Survey}
+Human-Robot Interaction (HRI) focuses on the interface between humans and robots. In their survey paper on HRI, Goodrich and Schultz introduce five attributes, shown in Figure~\ref{fig:five-attributes} that define the interactions between humans and robots \cite{Goodrich_Survey}.
 
 \begin{figure}[ht]
 	\makebox[\textwidth]{\hrulefill}
@@ -100,7 +98,7 @@ Of the five attributes of HRI, we will focus on autonomy and information exchang
 
 \subsection{Autonomy}
 
-The relationship between a robot and a human, as provided through the interface, can be viewed or conceptualized along the lines of a continuum or a scale of autonomy. Teleoperation represents one end of the spectrum, where the robot exhibits no qualities of autonomous behavior. On the other hand, a fully autonomous robot, acting independent of human input, represents the other extreme of autonomy. A simple scale of autonomy can be found in Figure~\ref{fig:autonomy}. \cite{Goodrich_Survey}
+The relationship between a robot and a human, as provided through the interface, can be viewed or conceptualized along the lines of a continuum or a scale of autonomy. Teleoperation represents one end of the spectrum, where the robot exhibits no qualities of autonomous behavior. On the other hand, a fully autonomous robot, acting independent of human input, represents the other extreme of autonomy. A simple scale of autonomy can be found in Figure~\ref{fig:autonomy} \cite{Goodrich_Survey}.
 
 
 \begin{figure}[ht]
@@ -113,13 +111,13 @@ The relationship between a robot and a human, as provided through the interface,
 % Awk. -ek
 Robots, as they presently exist, have a fairly limited set of autonomous actions available. As a result, most current interfaces, are artificially conservative in their autonomy due to limitations in artificial intelligence. As research into artificial intelligence and machine learning grows, a much more diverse set of autonomous behaviors will inevitably become available. As user interface designers, we are tasked to create extensible interfaces to support future behaviors.
 
-The idea of sliding autonomy allows the human and a robot to change the level of autonomy as needed. For illustration purposes, consider a robot that explores a warehouse. If the robot planned a poor navigation path, a user could manually specify the waypoints of an optimal path. If the robot is unable to complete the specified path due to an obstruction in the path, the robot could ask the user to directly teleoperate around the obstacle. Once free of the obstruction, the user would input a new set of goal coordinates and allow the autonomous navigation system to resume control. When combined with machine learning, sliding autonomy provides the robot a fantastic platform for interactive learning from demonstration. The idea of interactive learning from demonstration is already well established. \cite{GWAP} \cite{Grollman}
+The idea of sliding autonomy allows the human and a robot to change the level of autonomy as needed. For illustration purposes, consider a robot that explores a warehouse. If the robot planned a poor navigation path, a user could manually specify the waypoints of an optimal path. If the robot is unable to complete the specified path due to an obstruction in the path, the robot could ask the user to directly teleoperate around the obstacle. Once free of the obstruction, the user would input a new set of goal coordinates and allow the autonomous navigation system to resume control. When combined with machine learning, sliding autonomy provides the robot an excellent platform for interactive learning from demonstration. The idea of interactive learning from demonstration is already well established \cite{GWAP} \cite{Grollman}.
 
 \subsection{Information Exchange}
 \label{sub:info_exchange}
 The nature of information exchange defines the flow of data between the human and the robot. What information is provided, how it is represented, and when it is communicated are all properties of the interface design. This encompasses low-level communication of navigation and sensor data as well as high-level commands sent from the human. 
 
-The purpose of visualization interfaces is to represent the one-way exchange of information from the robot to humans. This data typically includes location information, laser or sonar readings, battery readings, accelerometer readings, and map data. Original interfaces were written to be accessible programatically. These interfaces were slowly adapted to display sensor data graphically, but the resulting interfaces were disjointed and required operator training. Examples of these 2D user interfaces can be seen in Figure~\ref{fig:prior-hri}. \cite{Bruemmer}
+The purpose of visualization interfaces is to represent the one-way exchange of information from the robot to humans. This data typically includes location information, laser or sonar readings, battery readings, accelerometer readings, and map data. Original interfaces were written to be accessible programatically. These interfaces were slowly adapted to display sensor data graphically, but the resulting interfaces were disjointed and required operator training. Examples of these 2D user interfaces can be seen in Figure~\ref{fig:prior-hri} \cite{Bruemmer}.
 
 \begin{figure}[ht]
 \begin{center}
@@ -129,11 +127,10 @@ The purpose of visualization interfaces is to represent the one-way exchange of 
 \end{center}
 \end{figure}
 
-
 % TODO 2011: Re-reead this paragraph
-In 2007, Dr. Curtis Nielsen introduced an ecological user interface with the goal of combining sensor data into a single, integrated display. Nielsen designed his interface for effective teleoperation, the technique of controlling a robot remotely. In his study, Nielsen compared an integrated 3D user interface to a simple 2D user interface for several environment-searching tasks. The 3D user interface displayed combined sensor data through a single viewport, while the 2D user interface displayed the same data through individually. The study found the 3D interface decreased collisions and decreased task completion time. \cite{Nielsen_Teleoperation}
+In 2007, Nielsen introduced an ecological user interface with the goal of combining sensor data into a single, integrated display. Nielsen designed his interface for effective teleoperation, the technique of controlling a robot remotely. In his study, Nielsen compared an integrated 3D user interface to a simple 2D user interface for several environment-searching tasks. The 3D user interface displayed combined sensor data through a single viewport, while the 2D user interface displayed the same data through individually. The study found the 3D interface decreased collisions and decreased task completion time \cite{Nielsen_Teleoperation}.
 
-Nielsen attributes the success of the 3D interface to improved situational awareness. The observed effect of situational awareness and context on interface effectiveness is congruous with the findings of other researchers. \cite{Nielsen_Teleoperation}
+Nielsen attributes the success of the 3D interface to improved situational awareness. The observed effect of situational awareness and context on interface effectiveness is congruous with the findings of other researchers \cite{Nielsen_Teleoperation}.
 
 A limitation of Nielsen's interface is that its focus on teleoperation leaves the robot without autonomy. While teleoperation may be optimal for single robot environments it does not allow for concurrent robot control. This limitation requires a human operator for every active robot. We believe that providing an ecological interface common to multiple robots allows for more efficient use of human resources.
 
