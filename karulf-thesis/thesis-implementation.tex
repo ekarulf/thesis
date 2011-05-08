@@ -15,7 +15,7 @@
 
 RIDE provides multiple interface modes, each specialized for different levels of autonomy. In our design phase, we decided to separate the user interface into two segments, the supervisor mode and the direct mode. The ``supervisor mode'' relies on robot to perform actions autonomously and report the information back to the human as appropriate. The ``direct mode'' allows the user to directly teleoperate a robot. By including both control styles, the user is given flexibility to use the most appropriate control mode for a given situation.
 
-In addition to switching the control schemes between modes, we also change the fidelity of information exchanged. We found that providing streaming video for each robot was taxing not only on the network bandwidth but also on the human's perception. The movement from the video would draw the users eye to several places on the screen making effective management difficult. To combat this problem reduce the number of available sensors in the supervisor mode. When a user wishes to inspect a region with higher fidelity, switching into the direct mode enables all sensors for the current robot.
+In addition to switching the control schemes between modes, we also change the fidelity of information exchanged. We found that providing streaming video for each robot was taxing not only on the network bandwidth but also on the human's perception. The movement from the video would draw the users eye to several places on the screen making effective management difficult. To combat this problem, we reduce the number of available sensors in the supervisor mode. When a user wishes to inspect a region with higher fidelity, switching into the direct mode enables all sensors for the current robot.
 
 \begin{figure}[ht]
 \begin{center}
@@ -51,7 +51,7 @@ The widget panel is displayed at the bottom of the screen. The widget panel alwa
 
 As mentioned in Section~\ref{sub:RTS_games}, RTS games employ a top-down view of the world to control many units. Real time strategy games exemplify the qualities we desire for a supervisory interface. Realtime strategy games support the task-based control of heterogenous unit types; each unit type has separate abilities, strengths, and weaknesses. We wanted a way to visualize this information in the user interface without cluttering the main viewport during normal use. We developed two user interface widgets to represent the abilities, strengths, and weaknesses of each robot visually.
 
-The first element known as the ``information panel'' can be seen in Figure~\ref{fig:ride-ui}. When a robot is selected, the information panel shows a listing of the robot's name, type, battery status, current task, and a list of sensors. An iconic rendering of the robot is displayed to visually represent the make of the robot.
+The first element known as the ``information panel'' can be seen in Figure~\ref{fig:ride-ui}. When a robot is selected, the information panel shows a listing of the robot's name, type, battery status, current task, and a list of sensors. An iconic rendering of the robot is displayed to visually represent the model of the robot.
 
 The second panel developed for the supervisory mode was the ``action panel.'' The action panel displays a list of buttons representing available actions for the selected robot. This list of actions is populated from what the robot self-reports actions it can perform. The implementation details of action auto-discovery is described in Section~\ref{sec:ros}. Clicking on a button will prompt for any additional arguments, such as asking the user to click on a position, and then send the task instruction to the robot. In our development we found that visualizing a confirmation helped improve clarity of what instructions were given to the robot. As an example when the user instructs a robot to move to a specific destination, the user interface will blink the target icon twice on the destination.  
 
@@ -59,9 +59,9 @@ The second panel developed for the supervisory mode was the ``action panel.'' Th
 \label{ssub:grouping_robot_teams}
 In our study of RTS games, we found that players would organize units into heterogenous groups such that the individual units complimented each other's strengths and weaknesses. This required an interface that allows a user to select multiple robots at the same time and then command the group effectively.
 
-When a user wishes to select a group of robots, instead of a single left click the user may left click and drag a rectangle around the robots he or she wishes to select. Much like single unit selection a detailed information panel will display relevant data about the robot. However, instead of showing detailed information on a single robot, the the ``information panel'' will be updated to show basic information on group as a whole. The information panel displays a 3D mockup for each robot currently selected and the name of the robot. The user may move the mouses on top of the 3D mockup to obtain additional information about the robot.
+When a user wishes to select a group of robots, instead of a single left click the user may left click and drag a rectangle around the robots he or she wishes to select. Much like single unit selection a detailed information panel will display relevant data about the robot. However, instead of showing detailed information on a single robot, the the ``information panel'' will be updated to show basic information on group as a whole. The information panel displays a 3D mockup for each robot currently selected and the name of the robot. The user may move the mouse on top of the 3D mockup to obtain additional information about the robot.
 
-In addition to the information panel, the ``action panel'' also has a slight change in behavior. The action panel selects the union of set of actions available to each robot. RTS games provided a base set of actions that all controllable units must be able to perform, ``Stop'' and ``Move''. We require the same two actions to be available for all robots in RIDE. The advantage of requiring the move command for all robots is that we can use a shortcut found in most RTS games. When a robot is selected -- instead of click on the move button and then clicking on a destination, the user need only right click on the destination on the ground.
+In addition to the information panel, the ``action panel'' also has a slight change in behavior. The action panel selects the intersection of set of actions available to each robot. RTS games provided a base set of actions that all controllable units must be able to perform, ``Stop'' and ``Move''. We require the same two actions to be available for all robots in RIDE. The advantage of requiring the move command for all robots is that we can use a shortcut found in most RTS games. When a robot is selected -- instead of click on the move button and then clicking on a destination, the user need only right click on the destination on the ground.
 % subsubsection grouping_robot_teams (end)
 
 % Need more
@@ -89,9 +89,11 @@ In addition to the information panel, the ``action panel'' also has a slight cha
 
 \subsection{Direct Control}
 
-The direct control mode sets up a high fidelity of information exchange between the human and the robot as the user teleoperates the robot. Due to the large amount of prior work in the field of interfaces for teleoperation. We searched for video game design elements that would compliment the existing interfaces. While there are several styles of video game that we could draw on for inspiration, we decided to base our direct control mode off of ``open environment games.''
+The direct control mode sets up a high fidelity of information exchange between the human and the robot as the user teleoperates the robot. Due to the large amount of prior work in the field of interfaces for teleoperation, we searched for video game design elements that would compliment the existing interfaces. While there are several styles of video game that we could draw on for inspiration, we decided to base our direct control mode on ``open environment games.''
 
-While not a genre in its own right open environment, or sandbox, games define a style of gameplay. Instead of the story following a predetermined linear path, the player is instead able to explore a world with the story unfolding around them. This style of gameplay is harolded by some as the future of games. Putting aside the narrative aspect of open environment games, the design elements that they employ have direct applicability to robotic interfaces.
+While not a genre in its own right open environment, or sandbox, games define a style of gameplay. Instead of the story following a predetermined linear path, the player is instead able to explore a world with the story unfolding around them. This style of gameplay is harolded by some as the future of games. Putting aside the narrative aspect of open environment games, the design elements that they employ have direct applicability to robot interfaces.
+
+%% TODO 2011 Harolded
 
 The interfaces of open environment games are usually fairly minimal preferring leave most of the user interface available for camera display. The few user interface elements that do exist are typically semi-transparent to allow the user to see through UI components to the map. We applied this principal to all user interface components in RIDE by applying a small amount of alpha transparency. You can see an example of the transparency looking at the floor behind the user interface elements at the bottom of the screen in Figure~\ref{fig:ride-ui}.
 
@@ -143,17 +145,16 @@ The ``roscore'' node is a special node that is run when the ROS environment is i
 
 Nodes that wish to read from a topic are known as ``subscribers''. Similar to publishers, a subscriber will announce it is listening to one ore more topics to the roscore node.
 
-The roscore node continually informs subscribers of the location of publishers. This allows nodes to communicate directly without needing to contact the roscore node. Currently only TCP and UDP unicast sockets are supported, however future releases of ROS will include shared memory and multicast networking. A simple example of a ROS digraph can be seen in Figure~\ref{fig:middleware-ros}.
+The roscore node informs subscribers of the location of publishers. This allows nodes to communicate directly without needing to contact the roscore node. Currently only TCP and UDP unicast sockets are supported, however future releases of ROS will include shared memory and multicast networking. A simple example of a ROS digraph can be seen in Figure~\ref{fig:middleware-ros}.
 
 \begin{figure}[ht]
 \includegraphics{images/middleware-ros.pdf}
 \caption{Example ROS application\label{fig:middleware-ros}}
 \end{figure}
 
-The development of nodes can build on each other. Low-level hardware interface nodes communicate raw sensor and actuator messages. Unlike traditional robotic driver software, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
+The development of nodes can build on each other. Low-level hardware interface nodes communicate raw sensor and actuator messages. Unlike traditional robot driver software, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
 
-% TODO: correct acronym IDL
-ROS also defines a common message format for communicating. Messages are defined using a independent-domain language (IDL) which in turn auto-generate serialization and deserialization code for supported languages. An example message file can be seen in Figure~\ref{fig:point}.
+ROS also defines a common message format for communicating. Messages are defined using a interface definition language (IDL) which in turn auto-generate serialization and deserialization code for supported languages. An example message file can be seen in Figure~\ref{fig:point}.
 
 \begin{figure}[ht]
 \makebox[\textwidth]{\hrulefill}
@@ -165,20 +166,6 @@ ROS also defines a common message format for communicating. Messages are defined
 \end{verbatim}
 \makebox[\textwidth]{\hrulefill}
 \caption{Point.msg : Message representation of a 3D Point\label{fig:point}}
-\end{figure}
-
-\subsection{Kinematic Tree}
-A large part of the complexity of robotic systems is transforming coordinate frame in a timely manner. ROS offers a special topic located at \verb!tf! and provides a cross-language library, also called ``tf'', to ease coordinate transformation tasks.
-
-ROS builds a kinematic tree using data published to the \verb!tf! topic. Coordinate frames contain a timestamp, an object's name, the parent coordinate frame and the quaternion offset between the two. The tf package allows a developer to request a quaternion offset between two coordinate frames. 
-
-In order to maintain a correct representation, the library automatically discards stale coordinate frame data. This requires objects to publish their location at a specified frequency. When all nodes are publish at an acceptable rate the full kinematic tree is accessible. A sample kinematic tree for a robot with a stero-vision rig mounted on-top of a pan-tilt unit can be seen in Figure~\ref{fig:tf-example}.
-
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=3.5in]{images/tf-example.pdf}
-\caption{Sample Kinematic Tree\label{fig:tf-example}}
-\end{center}
 \end{figure}
 
 \section{RIDE Architecture}
