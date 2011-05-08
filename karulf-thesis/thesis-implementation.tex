@@ -154,20 +154,6 @@ The roscore node informs subscribers of the location of publishers. This allows 
 
 The development of nodes can build on each other. Low-level hardware interface nodes communicate raw sensor and actuator messages. Unlike traditional robot driver software, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
 
-ROS also defines a common message format for communicating. Messages are defined using a interface definition language (IDL) which in turn auto-generate serialization and deserialization code for supported languages. An example message file can be seen in Figure~\ref{fig:point}.
-
-\begin{figure}[ht]
-\makebox[\textwidth]{\hrulefill}
-\begin{verbatim}
-	# This contains the position of a point in free space
-	float64 x
-	float64 y
-	float64 z
-\end{verbatim}
-\makebox[\textwidth]{\hrulefill}
-\caption{Point.msg : Message representation of a 3D Point\label{fig:point}}
-\end{figure}
-
 \section{RIDE Architecture}
 
 ROS was originally designed for a single robot system. A node may only be attached to a single ROS graph (or ``realm''). RIDE is designed to work with large numbers of robots. Early on in the development cycle, I decided to stick to the model that realms are local to a robot. This allows robots to operate independently of connectivity to eachother, and does not require any changes to existing single-robot code bases. This design conflict required the development of a new node library called ``rosmultimaster''.
