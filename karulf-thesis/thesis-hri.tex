@@ -26,7 +26,7 @@ The majority of the interface is occupied with a rendering of the world from the
 
 The challenge of first-person games is to build a situational awareness of what is going on around the character, but cannot be seen. While this often leads to exciting and engaging games, it is arguably not a design choice that makes it easy to maintain situational awareness.
 
-Third-person games are similar, except the viewpoint is typically above and behind the character, and moves with it. Third-person games allow the player to see the character in the world, and yield a greater sense of context. However, the viewpoint is still fixed, forcing the player to reconstruct unseen parts of the world in the player's mind.
+Third-person games are similar, except the viewpoint is typically above and behind the character, and moves with it. Third-person games allow the player to see the character in the world and yield a greater sense of context. However, the viewpoint is still fixed, forcing the player to reconstruct unseen parts of the world in the player's mind.
 
 Figure~\ref{fig:halo3} shows the user interface for \emph{Halo 3}, a recent first-person game. The bottom left shows a local map, with the locations of other players and adversaries, while character and weapon status is displayed along the top. 
 
@@ -61,7 +61,7 @@ Figure~\ref{fig:aoe3} shows the user interface from Microsofts's \emph{Age of Em
 \end{figure}
 
 
-The task list appears in the bottom right of the interface, and displays icons for all available tasks, based on the currently-selected units. Some tasks, such as movement, require more information, which is provided by clicking on the main display with the mouse.
+The task list appears in the bottom right of the interface and displays icons for all available tasks, based on the currently-selected units. Some tasks, such as movement, require more information, which is provided by clicking on the main display with the mouse.
 
 Information about the currently-selected units is displayed to the left of the task list. In the figure, a single heavy cannon unit has been selected, and information on its allegiance, player name, health, weaponry, and armor is shown.
 
@@ -94,9 +94,10 @@ Human-Robot Interaction (HRI) focuses on the interface between humans and robots
 	\caption{Five attributes of Human-Robot Interaction \label{fig:five-attributes}}
 \end{figure}
 
-Of the five attributes of HRI, we will focus on autonomy and information exchange. Autonomy is defined as the extent of actions a robot may take independently. We introduce the idea that autonomy may vary depending on context, known as ``Sliding autonomy,'' in Section~\ref{section:autonomy}. Information exchange describes the data that flows between a robot and a human. Like sliding autonomy, we introduce the idea that information exchange may vary based context. Section~\ref{section:infoexchage} introduces our refinements to the existing work in this field.
+Of the five attributes of HRI, we will focus on autonomy and information exchange. Autonomy is defined as the extent of actions a robot may take independently. ``Sliding autonomy,'' the idea that autonomy may vary depending on context, is introduced in further detail in Section~\ref{sub:autonomy}. Information exchange describes the data that flows between a robot and a human. Like sliding autonomy, we introduce the idea that information exchange may vary based context. Section~\ref{sub:info_exchange} introduces our refinements to the existing work in this field.
 
 \subsection{Autonomy}
+\label{sub:autonomy}
 
 The relationship between a robot and a human, as provided through the interface, can be viewed or conceptualized along the lines of a continuum or a scale of autonomy. Teleoperation represents one end of the spectrum, where the robot exhibits no qualities of autonomous behavior. On the other hand, a fully autonomous robot, acting independent of human input, represents the other extreme of autonomy. A simple scale of autonomy can be found in Figure~\ref{fig:autonomy} \cite{Goodrich_Survey}.
 
@@ -108,7 +109,7 @@ The relationship between a robot and a human, as provided through the interface,
 \end{center}
 \end{figure}
 
-% Awk. -ek
+% TODO: Awk. -ek
 Robots, as they presently exist, have a fairly limited set of autonomous actions available. As a result, most current interfaces, are artificially conservative in their autonomy due to limitations in artificial intelligence. As research into artificial intelligence and machine learning grows, a much more diverse set of autonomous behaviors will inevitably become available. As user interface designers, we are tasked to create extensible interfaces to support future behaviors.
 
 The idea of sliding autonomy allows the human and a robot to change the level of autonomy as needed. For illustration purposes, consider a robot that explores a warehouse. If the robot planned a poor navigation path, a user could manually specify the waypoints of an optimal path. If the robot is unable to complete the specified path due to an obstruction in the path, the robot could ask the user to directly teleoperate around the obstacle. Once free of the obstruction, the user would input a new set of goal coordinates and allow the autonomous navigation system to resume control. When combined with machine learning, sliding autonomy provides the robot an excellent platform for interactive learning from demonstration. The idea of interactive learning from demonstration is already well established \cite{GWAP} \cite{Grollman}.
