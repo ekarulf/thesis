@@ -3,7 +3,7 @@
 \label{chapter:hci}
 Human-Computer Interaction (HCI) is the study of how humans interface with technology. This includes traditional interfaces, such as graphical user interfaces controlled with a mouse and keyboard, as well as alternative interfaces such as the accelerometers in the Nintendo Wii™ controller or the motion tracking system in the Microsoft Kinect™.
 
-Despite the advances in efficacy and popularity of non-traditional, devices the remainder of this paper will be limited to devices standard on most computer systems, e.g., a monitor, mouse, and keyboard. In Section~\ref{section:futurework} we will briefly highlight how alternative interfaces would enhance our proposed interface.
+Despite the advances in efficacy and popularity of non-traditional devices, the remainder of this paper will be limited to devices standard on most computer systems, e.g., a monitor, mouse, and keyboard. In Section~\ref{section:futurework} we will briefly highlight how alternative interfaces would enhance our proposed interface.
 
 \section{Video Game Interfaces} % (fold)
 \label{sec:video_game_interfaces}
@@ -22,7 +22,7 @@ Grollman, in his dissertation work, applied a video game interface with HRI prin
 \label{sub:first_person_games}
 First-person games involve the direct control of a single character by the player. The game world is rendered from the viewpoint of that character, often with additional game information overlaid upon it. 
 
-The majority of the interface is occupied with a rendering of the world from the character’s perspective. The player can only see what the character can see, and the viewpoint is fixed. Additional game information is overlaid in this in the manner of a heads-up display.
+The majority of the interface is occupied with a rendering of the world from the character’s perspective. The player can only see what the character can see, and the viewpoint is fixed. Additional game information is overlaid in the in the manner of a heads-up display.
 
 The challenge of first-person games is to build a situational awareness of what is going on around the character, but cannot be seen. While this often leads to exciting and engaging games, it is arguably not a design choice that makes it easy to maintain situational awareness.
 
@@ -67,11 +67,11 @@ Information about the currently-selected units is displayed to the left of the t
 
 A map of the entire game world, called the minimap, is displayed in the bottom left corner of the interface. This map shows the locations of all units, colored according to the controlling player, along with basic terrain type. Overlaid on the map is a representation of the field-of-view in the main display (white rectangle). In the figure, only the areas previously explored by the player are displayed in the minimap. % The world is of finite size in this game, and the minimap is fixed, both in size and viewpoint.
 
-Clicking anywhere, on the displayed part of the minimap, moves the viewpoint in the main display to focus at that point. This option provides a quick way of moving the main display viewpoint around the (potentially large) world. The minimap also displays primitive notifications; when a unit needs attention, the colored dot that represents it flashes. A button to the side of the minimap moves the viewpoint of the main display to center on a unit currently without an assigned task, if one exists.
+Clicking anywhere, on the displayed part of the minimap, moves the viewpoint in the main display to focus at that point. This option provides a quick way of moving the main display viewpoint around the (potentially large) world. The minimap also displays primitive notifications; when a unit needs attention, a colored dot representing the unit flashes. A button, to the side of the minimap, moves the viewpoint of the main display to center on a unit currently without an assigned task, if one exists.
 
-The interface in Figure~\ref{fig:aoe3} highlights notifications in two locations. Large notifications in, the center of the screen, provide urgent information to the user about the current objective. The larger notification is displayed on the screen for a short time before it is automatically hidden. Smaller notifications on the left side of the screen provide less urgent, actionable information to the user. The smaller notifications persist until dismissed by the user. When clicked, the smaller notifications focus the camera on location, in this case a new piece of artillery.
+The interface in Figure~\ref{fig:aoe3} highlights notifications in two locations. Large notifications, in the center of the screen, provide urgent information to the user about the current objective. The larger notification is displayed on the screen for a short time before it is automatically hidden. Smaller notifications on the left side of the screen provide less urgent, actionable information to the user. The smaller notifications persist until dismissed by the user. When clicked, the smaller notifications focus the camera on location, in this case a new piece of artillery.
 
-Finally, a menu bar stretches across the top of the display. This displays current status in the top right (current quantities of resources), and gives access to less-frequently-used functions, such as help screens and configuration dialogs.
+Finally, a menu bar stretches across the top of the display. This displays current status in the top right (current quantities of resources), and it gives access to less-frequently-used functions, such as help screens and configuration dialogs.
 
 % subsection real_time_strategy_games (end)
 % section video_game_interfaces (end)
@@ -79,7 +79,7 @@ Finally, a menu bar stretches across the top of the display. This displays curre
 
 \section{Human-Robot Interaction}
 \label{sec:hri}
-Human-Robot Interaction (HRI) focuses on the interface between humans and robots. In their survey paper on HRI, Goodrich and Schultz introduce five attributes, shown in Figure~\ref{fig:five-attributes} that define the interactions between humans and robots \cite{Goodrich_Survey}.
+Human-Robot Interaction (HRI) focuses on the interface between humans and robots. In their survey paper on HRI, Goodrich and Schultz introduce five attributes, shown in Figure~\ref{fig:five-attributes}, that define the interactions between humans and robots \cite{Goodrich_Survey}.
 
 \begin{figure}[ht]
 	\makebox[\textwidth]{\hrulefill}
@@ -94,7 +94,7 @@ Human-Robot Interaction (HRI) focuses on the interface between humans and robots
 	\caption{Five attributes of Human-Robot Interaction \label{fig:five-attributes}}
 \end{figure}
 
-Of the five attributes of HRI, we will focus on autonomy and information exchange. Autonomy is defined as the extent of actions a robot may take independently. ``Sliding autonomy,'' the idea that autonomy may vary depending on context, is introduced in further detail in Section~\ref{sub:autonomy}. Information exchange describes the data that flows between a robot and a human. Like sliding autonomy, we introduce the idea that information exchange may vary based context. Section~\ref{sub:info_exchange} introduces our refinements to the existing work in this field.
+Of the five attributes of HRI, we will focus on autonomy and information exchange. Autonomy is defined as the extent of actions a robot may take independently. ``Sliding autonomy,'' the idea that autonomy may vary depending on context, is introduced in further detail in Section~\ref{sub:autonomy}. Information exchange describes the data that flows between a robot and a human. Like sliding autonomy, we introduce the idea that information exchange may vary based on context. Section~\ref{sub:info_exchange} introduces our refinements to the existing work in this field.
 
 \subsection{Autonomy}
 \label{sub:autonomy}
@@ -110,7 +110,7 @@ The relationship between a robot and a human, as provided through the interface,
 \end{figure}
 
 % TODO: Awk. -ek
-Robots, as they presently exist, have a fairly limited set of autonomous actions available. As a result, most current interfaces, are artificially conservative in their autonomy due to limitations in artificial intelligence. As research into artificial intelligence and machine learning grows, a much more diverse set of autonomous behaviors will inevitably become available. As user interface designers, we are tasked to create extensible interfaces to support future behaviors.
+Robots, as they presently exist, have a fairly limited set of autonomous actions available. As a result, most current interfaces are artificially conservative in their autonomy due to limitations in artificial intelligence. As research into artificial intelligence and machine learning grows, a much more diverse set of autonomous behaviors will inevitably become available. As user interface designers, we are tasked to create extensible interfaces to support future behaviors.
 
 The idea of sliding autonomy allows the human and a robot to change the level of autonomy as needed. For illustration purposes, consider a robot that explores a warehouse. If the robot planned a poor navigation path, a user could manually specify the waypoints of an optimal path. If the robot is unable to complete the specified path due to an obstruction in the path, the robot could ask the user to directly teleoperate around the obstacle. Once free of the obstruction, the user would input a new set of goal coordinates and allow the autonomous navigation system to resume control. When combined with machine learning, sliding autonomy provides the robot an excellent platform for interactive learning from demonstration. The idea of interactive learning from demonstration is already well established \cite{GWAP} \cite{Grollman}.
 
