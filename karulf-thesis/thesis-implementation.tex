@@ -110,7 +110,7 @@ To complement the task system, a notification system was also introduced. The no
 
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[width=6.10in]{images/ride-notification.png}
+\includegraphics[width=4in]{images/ride-notification.png}
 \caption{RIDE Notification Example\label{fig:ride-notification}}
 \end{center}
 \end{figure}
@@ -130,29 +130,33 @@ To complement the task system, a notification system was also introduced. The no
 % subsection prior_work (end)
 
 \section{Robot Operating System}
-The Robot Operating System (ROS), developed by Stanford University and Willow Garage, is a specialized adaptation of the Common Object Request Broker Architecture (CORBA) design pattern for robotics software. This design decision gives ROS a modern distributed architecture that encourages small, reusable code.
-
-The ROS architecture can be thought of as a directed graph. Software components are called ``nodes'' and are run in separate processes. This allows each node to be written using the most appropriate language to the task. As an example, a performance sensitive node could be written in C while a less demanding node could be written in Python for improved readability. At the time of writing ROS supports C++, Python, Java and Lisp.
-
-% Nodes => Package
-% Pacakages => Stack
-% Stack => Repositories
+The RIDE interface uses the ROS robotics middleware framework to abstract common components of robotics software. ROS breaks a large robotic system into many discrete computational \emph{nodes}. Because the nodes for a single robot operate as distinct processes, potentially across multiple platforms, ROS provides communication middleware. The communication between nodes is brokered through a special \verb!roscore! node. This \verb!roscore! node maintains a list of active nodes, topics, services, and configuration values \cite{ROS09}. We describe the publish/subscribe \emph{topic} system and the synchronous \emph{service} system in Section~\ref{sub:ros_net}. Finally, we discuss \verb!tf!, ROS's built-in kinematic tree in Section~\ref{sub:ros_tf}.
 
 \subsection{Topics and Services}
-ROS provides a framework for connecting nodes together. Nodes can be connected together through a ``topic'' or through a ``service''. A topic is a named stream that supports multiple readers and writers. Nodes that write to a topic are known as ``publishers''. A publisher announces that it is publishing to one or more topics to the ``roscore'' node. 
+\label{sub:ros_net}
+ROS provides a framework where computational \emph{nodes} communicate via \emph{topics} and \emph{services}. A topic is a named broadcast endpoint that supports multiple readers and writers. Nodes that write to a topic are known as ``publishers.'' A publisher announces it is publishing to one or more topics to the \verb!roscore! node. Nodes that wish to read from a topic are known as ``subscribers.'' While similar in design to the Common Object Request Broker Architecture (CORBA), the \verb!roscore! node only provides a list of publishers to a subscriber node; the subscriber communicates directly with the publisher. In general nodes either publish sensor data, transform and republish data, or control actuators from published data. A simple example of a ROS digraph can be seen in Figure~\ref{fig:middleware-ros}. While topics are well suited for periodic broadcast messages, the ``best effort'' delivery make topics unsuitable for command data \cite{ROS09}.
 
-The ``roscore'' node is a special node that is run when the ROS environment is initialized. It acts as a directory server maintaining a list of active nodes, topic, services, and configuration values.
-
-Nodes that wish to read from a topic are known as ``subscribers''. Similar to publishers, a subscriber will announce it is listening to one ore more topics to the roscore node.
-
-The roscore node informs subscribers of the location of publishers. This allows nodes to communicate directly without needing to contact the roscore node. Currently only TCP and UDP unicast sockets are supported, however future releases of ROS will include shared memory and multicast networking. A simple example of a ROS digraph can be seen in Figure~\ref{fig:middleware-ros}.
+The \emph{services} system within ROS addresses the need for ``reliable'' message delivery. A service is a named endpoint with one \emph{service provider} and many \emph{service clients}.  Similar to topic subscribers and publishers, service providers and clients announce their intentions to the \verb!roscore! node. Unlike broadcast topics, messages pass between the service provider and client through a unicast stream. 
 
 \begin{figure}[ht]
 \includegraphics{images/middleware-ros.pdf}
 \caption{Example ROS application\label{fig:middleware-ros}}
 \end{figure}
 
-The development of nodes can build on each other. Low-level hardware interface nodes communicate raw sensor and actuator messages. Unlike traditional robot driver software, ROS allows the developer to break the control code up into several pieces. This modular interface allows code re-use of control code as well as driver code.
+\subsection{Kinematic Tree}
+\label{sub:ros_tf}
+A large part of the complexity of robotic systems is transforming coordinate frame in a timely manner. ROS offers a special topic located at \verb!tf! and provides a cross-language library, also called ``tf'', to ease coordinate transformation tasks.
+
+ROS builds a kinematic tree using data published to the \verb!tf! topic. Coordinate frames contain a timestamp, an object's name, the parent coordinate frame and the quaternion offset between the two. The tf package allows a developer to request a quaternion offset between two coordinate frames. 
+
+In order to maintain a correct representation, the library automatically discards stale coordinate frame data. This requires objects to publish their location at a specified frequency. When all nodes are publish at an acceptable rate the full kinematic tree is accessible. A sample kinematic tree for a robot with a stero-vision rig mounted on-top of a pan-tilt unit can be seen in Figure~\ref{fig:tf-example}.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=3.5in]{images/tf-example.pdf}
+\caption{Sample Kinematic Tree\label{fig:tf-example}}
+\end{center}
+\end{figure}
 
 \section{RIDE Architecture}
 
@@ -160,9 +164,14 @@ ROS was originally designed for a single robot system. A node may only be attach
 
 rosmultimaster allows a single node to connect to multiple realms using the native ROS python (rospy) codebase. rosmultimaster is multi-threaded library that provides both a synchronous and asynchronous interface. Further implementation details for rosmultimaster can be found in Appendix X % TODO: Appendix number
 
-Using the rosmultimaster code-base, we developed RIDE to connect to each robot on startup, as well as a single mapping realm. A high level overview can be found in Figure X.X. The map realm acts as a central location to for map retrieval / updating. In the future, if ROS were to support peer-to-peer networking, a map could be dynamically built by stitching together several independent maps. 
+Using the rosmultimaster code-base, we developed RIDE to connect to each robot on startup, as well as a single mapping realm. A high level overview can be found in Figure~\ref{fig:ride-architecture}. The map realm acts as a central location to for map retrieval / updating. In the future, if ROS were to support peer-to-peer networking, a map could be dynamically built by stitching together several independent maps. 
 
-% TODO: Generate high level figure
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=5.10in]{images/ride-architecture.pdf}
+\caption{RIDE architecture: two robot realms with the shared map realm \label{fig:ride-architecture}}
+\end{center}
+\end{figure}
 
 \subsection{Simulation Realm}
 \label{sub:simulator}
