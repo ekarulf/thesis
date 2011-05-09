@@ -1,12 +1,9 @@
 %!TEX root = karulf-thesis.tex
 \chapter{Implementation}
 
-We present RIDE, the Robot Interactive Display Environment, as an example multi-mode interface.
+We present RIDE, the Robot Interactive Display Environment, as an example multi-mode interface. While a number of control interfaces either similar to, or draw direct inspiration from, RTS games \cite{Bruemmer05turnoff} \cite{Kadous} \cite{Mclurkin} \cite{Tejada} or from first or third-person games \cite{Bruemmer05turnoff} \cite{Humphrey} \cite{Maxwell}, we are not aware of any systems which provide as many RTS interface features as RIDE. We are also not aware of any existing interfaces that allow the user to move between task-level and direct control in the way that RIDE allows. We should also note that the work presented in this paper builds directly on a previous prototype version of RIDE \cite{rrsd08}. We discuss the user interface in full detail in Section~\ref{sec:ride_user_interface}.
 
-\verb!http://wu-ros-pkg.sourceforge.net!
-
-\textbf{NEED TEXT HERE}
-
+We use a robotics middleware package, ROS, to abstract details of robotics software from the RIDE user interface. We briefly introduce key concepts of ROS, the Robot Operating System, in Section~\ref{sec:ros}. In Section~\ref{sec:ride_code}, we describe the system level architecture of RIDE. The source code for RIDE is freely available at the Washington University ROS repository, \verb!http://wu-ros-pkg.sourceforge.net!.
 
 %% Unused!
 % RIDE allows the human to increase or decrease the level of autonomy on a per robot basis. In contrast, the robots are capable of only decreasing the level of autonomy.
@@ -137,6 +134,7 @@ To complement the task system, a notification system was also introduced. The no
 % subsection prior_work (end)
 
 \section{Robot Operating System}
+\label{sec:ros}
 The RIDE interface uses the ROS robotics middleware framework to abstract common components of robotics software. ROS breaks a large robotic system into many discrete computational \emph{nodes}. Because the nodes for a single robot operate as distinct processes, potentially across multiple platforms, ROS provides communication middleware. The communication between nodes is brokered through a special \verb!roscore! node. This \verb!roscore! node maintains a list of active nodes, topics, services, and configuration values \cite{ROS09}. We describe the publish/subscribe \emph{topic} system and the synchronous \emph{service} system in Section~\ref{sub:ros_net}. Finally, we discuss \verb!tf!, ROS's built-in kinematic tree in Section~\ref{sub:ros_tf}.
 
 \subsection{Topics and Services}
@@ -199,7 +197,7 @@ When robots connect to the RIDE interface, the tasks that they can perform are r
 % Discuss ride_agent
 % Discuss GoToNode
 
-\section{Panda3D Integration}
+\section{Panda3D}
 
 RIDE uses the popular 3D rendering engine Panda3D to display the virtual environment to the user. Like most rendering engines, Panda3D relies on a scene graph for rendering objects onto the screen. We dynamically construct the 3D environment based on data from the mapping realm and each robot's representation of the world. Due to the common mapping realm, mentioned in Section~\ref{sec:ride_code}, all robots share a common coordinate frame. This allows the RIDE UI to represent a one-to-one mapping of objects from each robot's kinematic tree to objects in Panda3D's scene graph. For example, the robot given in the Figure~\ref{fig:tf-example} would render a robot equipped with a laser rangefinder and a two web cams mounted to a pan-tilt unit.
 
