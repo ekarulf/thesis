@@ -1,6 +1,13 @@
 %!TEX root = karulf-thesis.tex
 \chapter{Implementation}
 
+We present RIDE, the Robot Interactive Display Environment, as an example multi-mode interface.
+
+\verb!http://wu-ros-pkg.sourceforge.net!
+
+\textbf{NEED TEXT HERE}
+
+
 %% Unused!
 % RIDE allows the human to increase or decrease the level of autonomy on a per robot basis. In contrast, the robots are capable of only decreasing the level of autonomy.
 
@@ -159,48 +166,48 @@ In order to maintain a correct representation, the library automatically discard
 \end{figure}
 
 \section{RIDE Architecture}
+\label{sec:ride_code}
+Originally designed for a single robot system, ROS is not well suited to control multi-robot teams. This conflicts with the design RIDE to control with large numbers of robots. We decided to maintain the ROS architecture by maintaining a \verb!roscore! and set of nodes on each robot. We define a collection \verb!roscore! and supporting nodes as a ``realm.'' We developed a utility, \verb!rosmultimaster!, to allow a single node to connect to multiple realms. This design allows robots to operate independently and gives RIDE the freedom to connect to robot realms as needed.
 
-ROS was originally designed for a single robot system. A node may only be attached to a single ROS graph (or ``realm''). RIDE is designed to work with large numbers of robots. Early on in the development cycle, wedecided to stick to the model that realms are local to a robot. This allows robots to operate independently of connectivity to eachother, and does not require any changes to existing single-robot code bases. This design conflict required the development of a new node library called ``rosmultimaster''.
+Each robot realm runs a RIDE node (\verb!ride_agent! in figure~\ref{fig:ride-simulation-realm}), which publishes information about the robot, including the tasks that it can perform, the sensors that it has, diagnostic information, and notifications. The RIDE interface uses this information to subscribe to relevant sensor, diagnostic, and notification topics from the robot.
 
-rosmultimaster allows a single node to connect to multiple realms using the native ROS python (rospy) codebase. rosmultimaster is multi-threaded library that provides both a synchronous and asynchronous interface. Further implementation details for rosmultimaster can be found in Appendix X % TODO: Appendix number
+Figure~\ref{fig:ride-simulation-realm} shows the set of ROS nodes for a simulated robot. All sensor information (\verb!base_scan!, \verb!odom!) originates from the simulator node (\verb!state_bridge!). Similarly, all movement commands (\verb!cmd_vel!) are consumed by \verb!state_bridge!. On a real robot, there would be separate nodes for each of the sensors, and for the movement controller.
 
-Using the rosmultimaster code-base, we developed RIDE to connect to each robot on startup, as well as a single mapping realm. A high level overview can be found in Figure~\ref{fig:ride-architecture}. The map realm acts as a central location to for map retrieval / updating. In the future, if ROS were to support peer-to-peer networking, a map could be dynamically built by stitching together several independent maps. 
+RIDE also establishes direct, service connections with the nodes responsible for performing the tasks that can be allocated to the robot. In Figure~\ref{fig:ride-simulation-realm}, \verb!GoToNode! is responsible for movements tasks given to the robot. The \verb!ride_agent! node is also capable of sending movement commands directly to the motion controller (or simulator), to stop the robot when needed.
 
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=5.10in]{images/ride-architecture.pdf}
-\caption{RIDE architecture: two robot realms with the shared map realm \label{fig:ride-architecture}}
-\end{center}
-\end{figure}
-
-\subsection{Simulation Realm}
-\label{sub:simulator}
-Weused a simulation environment, called ``rosstage'', to provide a consistent environment. The simulated system architecture is a superset of the regular RIDE architecture with the map realm acting as a full simulation realm and several additional topics being shared to the robot realms. An overview of the simulation architecture can be found in Figure~\ref{fig:ride-simulation-realm}.
+When robots connect to the RIDE interface, the tasks that they can perform are recorded, and this information is used to populate the task list when the robots are subsequently selected. Currently, the set of tasks that a robot can perform is assumed to be static, and drawn from a fixed set of known tasks. This assumption allows us to assign an appropriate icon for each task, and to know the parameters that each task requires (which require additional modal interactions with the interface). Similarly, we assume that the sensors available to our robots are drawn from a known set. This lets us be sure that we have appropriate visualizations for each possible sensor. We discuss plans to relax these assumptions in future work (see Section~\ref{section:futurework}).
 
 \begin{sidewaysfigure}[ht]
 \includegraphics[width=\textwidth]{images/ride-simulation-realm.png}
 \caption{Publish/Subscriber graph in RIDE Simulation Realm\label{fig:ride-simulation-realm}}
 \end{sidewaysfigure}
 
-\subsection{Robot Realm}
-\label{section:robot-architecture}
-RIDE uses a modular structure for controlling robots. Due to the topic system in ROS, this functionality can be written to work regardless of if the robot is simulated or physical. Each robot must provide position data for basic RIDE functionality. Beyond position data, the user can choose what sensors, actuators, and ``actions'' to provide.
 
-Figure~\ref{fig:ride-robot-realm} demonstrates a simulated robot realm and the components to the most basic functionality. The robot must be able to orient itself with respect to the \verb!/map! coordinate frame. This typically requires a localization node like the Adaptive Monte-Carlo Localization (amcl) node when running on a physical robot or a fake localization node when running in simulation.
-
-In addition to providing position data, the robot must expose a path planning node. ROS provides a navigation stack complete with a path planning node, called move\_base. Lastly, the robot must provide a way to directly control the movement of the robot allowing the user to ``drive'' a robot around freely.
+% \subsection{Simulation Realm}
+% \label{sub:simulator}
+% Weused a simulation environment, called ``rosstage'', to provide a consistent environment. The simulated system architecture is a superset of the regular RIDE architecture with the map realm acting as a full simulation realm and several additional topics being shared to the robot realms. An overview of the simulation architecture can be found in Figure~\ref{fig:ride-simulation-realm}.
+% 
+% 
+% \subsection{Robot Realm}
+% \label{section:robot-architecture}
+% RIDE uses a modular structure for controlling robots. Due to the topic system in ROS, this functionality can be written to work regardless of if the robot is simulated or physical. Each robot must provide position data for basic RIDE functionality. Beyond position data, the user can choose what sensors, actuators, and ``actions'' to provide.
+% 
+% Figure~\ref{fig:ride-robot-realm} demonstrates a simulated robot realm and the components to the most basic functionality. The robot must be able to orient itself with respect to the \verb!/map! coordinate frame. This typically requires a localization node like the Adaptive Monte-Carlo Localization (amcl) node when running on a physical robot or a fake localization node when running in simulation.
+% 
+% In addition to providing position data, the robot must expose a path planning node. ROS provides a navigation stack complete with a path planning node, called move\_base. Lastly, the robot must provide a way to directly control the movement of the robot allowing the user to ``drive'' a robot around freely.
 
 % Discuss ride_agent
 % Discuss GoToNode
 
-\subsection{Panda3D Integration}
+\section{Panda3D Integration}
 
-RIDE uses the popular 3D rendering engine Panda3D to display the virtual environment to the user. Panda3D is implemented in C++ for performance reasons, and provides a Python interface that we used to integrate with ROS. 
+RIDE uses the popular 3D rendering engine Panda3D to display the virtual environment to the user. Like most rendering engines, Panda3D relies on a scene graph for rendering objects onto the screen. We dynamically construct the 3D environment based on data from the mapping realm and each robot's representation of the world. Due to the common mapping realm, mentioned in Section~\ref{sec:ride_code}, all robots share a common coordinate frame. This allows the RIDE UI to represent a one-to-one mapping of objects from each robot's kinematic tree to objects in Panda3D's scene graph. For example, the robot given in the Figure~\ref{fig:tf-example} would render a robot equipped with a laser rangefinder and a two web cams mounted to a pan-tilt unit.
 
-Like most rendering engines, Panda3D relies on a scene graph for rendering objects onto the screen. We kept a one-to-one mapping of objects in ROS's kinematic tree to objects in Panda3D's scene graph. This natural mapping proved to be simple and effective.
-
-We developed a simple configuration file, using the YAML format, to let users configure which realms RIDE should connect to and what models to use when rendering objects from ROS's kinematic tree in the Panda3D scene graph. An example can be seen Figure~\ref{fig:tf-example}, where a single robot contains a laser range finder. Future work would remove the configuration file, moving the connection information into the user interface, and updating the RIDE protocol to provide dimensions and model information as needed.
-
-% TODO: Insert figure: RRS / scene graph
-
-Panda3D provides its own run loop for running tasks, processing events and updating the scene graph. For performance reasons, Panda3D does not use the native Python threading implementation so wechose to use the synchronous API offered by rosmultimaster. Wethen added one background task per rosmultimaster instance to Panda3D's task manager. The rosmultimaster tasks were called at a specified frequency designed to keep latency low and framerate high.
+% \begin{figure}[ht]
+% \begin{center}
+% \includegraphics[width=5.10in]{images/ride-architecture.pdf}
+% \caption{RIDE architecture: two robot realms with the shared map realm \label{fig:ride-architecture}}
+% \end{center}
+% \end{figure}
+% 
+% Panda3D provides its own run loop for running tasks, processing events and updating the scene graph. For performance reasons, Panda3D does not use the native Python threading implementation so wechose to use the synchronous API offered by rosmultimaster. Wethen added one background task per rosmultimaster instance to Panda3D's task manager. The rosmultimaster tasks were called at a specified frequency designed to keep latency low and framerate high.
